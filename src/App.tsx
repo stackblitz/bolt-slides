@@ -1,976 +1,302 @@
-import Deck from './deck/Deck';
-import Slide from './deck/Slide';
-import Build from './deck/Build';
-import Reveal from './deck/Reveal';
-import Bento from './components/Bento';
-import Split from './components/Split';
-import CountUp from './components/CountUp';
-import TiltCard from './components/TiltCard';
-import Marquee from './components/Marquee';
-import VisualDashboard from './components/VisualDashboard';
-import StatGrid from './components/StatGrid';
-import Accordion from './components/Accordion';
-import Comparison from './components/Comparison';
-import Tabs from './components/Tabs';
-import Timeline from './components/Timeline';
-import CodeWindow from './components/CodeWindow';
-import BrowserFrame from './components/BrowserFrame';
-import SpotlightCard from './components/SpotlightCard';
-import { BarChart, LineChart, DonutChart } from './components/Charts';
-import Section from './components/Section';
-import Quote from './components/Quote';
-import Pricing from './components/Pricing';
-import Steps from './components/Steps';
-import Agenda from './components/Agenda';
-import Team from './components/Team';
-import Cover from './components/Cover';
-import BigNumber from './components/BigNumber';
-import Contrast from './components/Contrast';
-import Chat from './components/Chat';
-import Table from './components/Table';
-import Globe from './components/Globe';
+import {
+  Deck,
+  Cover,
+  Slide,
+  Agenda,
+  Section,
+  Split,
+  Comparison,
+  Steps,
+  Timeline,
+  StatGrid,
+  BigNumber,
+  Quote,
+} from './deck';
 
-/* ══════════════════════════════════════════════════════════════════════
-   ⚠️  THROWAWAY DEMO showing every component. DELETE these slides and AUTHOR
-   THE USER'S DECK. Each child of <Deck> is one slide. Add speaker notes with
-   notes="…" on any slide (shown in presenter mode — press P).
-   ══════════════════════════════════════════════════════════════════════ */
-const panel = (extra = 0.22): React.CSSProperties => ({
-  position: 'absolute',
-  inset: 0,
-  background: `radial-gradient(120% 100% at 30% 20%, color-mix(in srgb, var(--primary) ${
-    extra * 100
-  }%, transparent), transparent 60%), var(--surface-2)`,
-});
-const card: React.CSSProperties = {
-  padding: 22,
-  borderRadius: 'var(--radius)',
-  background: 'var(--surface)',
-  border: '1px solid var(--hair)',
-};
+import {
+  Pricing,
+  Team,
+  BrowserFrame,
+  Globe,
+  TiltCard,
+  SpotlightCard,
+  Marquee,
+} from './components';
 
 export default function App() {
   return (
     <Deck>
-      {/* Cover */}
+      {/* ==================== SLIDE 1: Hero ==================== */}
       <Cover
-        nav="Cover"
-        notes="Welcome — introduce yourself, then set up the problem. Hold a beat on this slide."
-        kicker="Bolt Slides · Component demo"
-        title={<span className="accent-text">Bolt Slides</span>}
-        subtitle="A responsive React deck engine. Delete this and build the real one."
-        foot="June 2026 · Component demo"
+        kicker="CubicleTech LLP"
+        title="BUILDERS"
+        subtitle="The AI Software Factory"
+        tagline="Build the platform once. Build unlimited software products forever."
+        notes="Strong opening. Pause after the tagline."
       />
 
-      {/* Statement + click-build */}
-      <Slide
-        center
-        nav="Thesis"
-        notes="Pause before revealing the second line. The whole pitch hangs on this contrast."
-      >
-        <h2
-          className="headline"
-          style={{ fontSize: 'clamp(34px,5.5vw,68px)', marginInline: 'auto' }}
-        >
-          Dashboards are everywhere.{' '}
-          <span className="accent-text">Insight isn't.</span>
-        </h2>
-        <Build at={1}>
-          <p className="subhead" style={{ marginTop: 20 }}>
-            Bolt Slides turns raw events into answers — automatically.
-          </p>
-        </Build>
+      {/* ==================== SLIDE 2: Who We Are ==================== */}
+      <Slide center nav="Who We Are" notes="Introduce the founding team">
+        <h2 className="headline">Who We Are</h2>
+        <p className="subhead">
+          A 5-member founding team with deep expertise in Project Management, PMO, Agile, Scrum, and Product Delivery.
+        </p>
+        <p>
+          We are not traditional developers — our strength is understanding business problems and delivering value.
+          <br />Builders allows us to amplify those strengths using AI.
+        </p>
       </Slide>
 
-      {/* Agenda */}
-      <Agenda
-        nav="Agenda"
-        notes="Thirty seconds max — just orient the room, then move."
-        kicker="Agenda"
-        title="What we'll cover."
-        items={[
-          'The problem',
-          'How Bolt Slides works',
-          'Proof it compounds',
-          { title: 'Pricing & the ask', hint: '5 min' },
-        ]}
-      />
-
-      {/* Contrast — the problem */}
-      <Contrast
-        nav="The problem"
-        notes="Let the left panel sting for a second before you talk to the right one."
-        kicker="The shift"
-        title="Stop digging. Start asking."
-        left={{
-          label: 'Before',
-          title: 'Dashboard sprawl',
-          points: [
-            'Forty dashboards, zero answers',
-            'Analysts as human query engines',
-            'Insights arrive a week late',
-          ],
-        }}
-        right={{
-          label: 'With Bolt Slides',
-          title: 'Answers on tap',
-          points: [
-            'Ask in plain English',
-            'Sub-second, source-linked answers',
-            'Alerts before the dashboard knows',
-          ],
-        }}
-      />
-
-      {/* Split feature */}
-      <Split
-        nav="Realtime"
-        notes="Emphasize sub-second latency. Point at the live chart while you talk."
-        kicker="Realtime"
-        title={
-          <>
-            Everything, <span className="accent-text">as it happens.</span>
-          </>
-        }
-        body="Live metrics with sub-second latency — no pipelines to babysit."
-        media={
-          <>
-            <div style={panel(0.22)} />
-            <div
-              style={{
-                position: 'relative',
-                padding: 'clamp(14px,3vw,40px)',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              <TiltCard>
-                <VisualDashboard />
-              </TiltCard>
-            </div>
-          </>
-        }
-      />
-
-      {/* Bento */}
-      <Bento
-        nav="Platform"
-        notes="Don't read every tile — let them scan. Land on throughput and uptime."
-        kicker="One platform"
-        title="Everything in one place."
-        tiles={[
-          {
-            k: 'Throughput',
-            fig: <CountUp to={9.4} decimals={1} suffix="M" />,
-            body: 'events / min at peak.',
-            c: 5,
-            r: 2,
-            variant: 'glow',
-          },
-          {
-            k: 'Uptime',
-            fig: <CountUp to={99.99} decimals={2} suffix="%" />,
-            c: 4,
-          },
-          { k: 'Regions', fig: <CountUp to={28} />, c: 3, variant: 'accent' },
-          {
-            k: 'Connectors',
-            title: '120+ native',
-            body: 'Snowflake, Kafka, dbt…',
-            c: 4,
-          },
-          { k: 'Compliance', title: 'SOC 2 · HIPAA', c: 3 },
-        ]}
-      />
-
-      {/* Globe */}
-      <Globe
-        nav="Global"
-        notes="Spin it if you like — the markers are our actual regions. Land on the APAC number."
-        kicker="28 regions"
-        title={
-          <>
-            Everywhere your <span className="accent-text">data lives.</span>
-          </>
-        }
-        body="Ingest close to the source; answer from the nearest edge."
-        markers={[
-          {
-            location: [37.77, -122.41],
-            size: 0.08,
-            label: 'sfo1',
-            value: '221k evt/s',
-          },
-          { location: [40.71, -74.0], size: 0.08 },
-          {
-            location: [51.5, -0.12],
-            size: 0.07,
-            label: 'lhr1',
-            value: '188k evt/s',
-          },
-          { location: [52.52, 13.4], size: 0.05 },
-          {
-            location: [1.35, 103.82],
-            size: 0.07,
-            label: 'sin1',
-            value: '96k evt/s',
-          },
-          { location: [35.68, 139.69], size: 0.06 },
-          { location: [-33.87, 151.2], size: 0.05 },
-          { location: [-23.55, -46.63], size: 0.05 },
-        ]}
-        arcs={[
-          { from: [37.77, -122.41], to: [51.5, -0.12] },
-          { from: [51.5, -0.12], to: [1.35, 103.82] },
-          { from: [37.77, -122.41], to: [-23.55, -46.63] },
-        ]}
-        stats={[
-          { value: '48%', label: 'North America' },
-          { value: '31%', label: 'EMEA' },
-          { value: '21%', label: 'APAC + LATAM' },
-        ]}
-      />
-
-      {/* StatGrid — traction */}
-      <StatGrid
-        nav="Traction"
-        notes="These are the headline numbers investors remember. Say ARR is up 3× out loud."
-        kicker="Traction"
-        title="Numbers that compound."
-        stats={[
-          {
-            value: <CountUp to={4.2} decimals={1} prefix="$" suffix="M" />,
-            label: 'ARR',
-            caption: 'up 3× year over year',
-          },
-          {
-            value: <CountUp to={92} suffix="%" />,
-            label: 'Net retention',
-            caption: 'best in class',
-          },
-          {
-            value: <CountUp to={120} suffix="+" />,
-            label: 'Enterprise logos',
-            caption: 'across six industries',
-          },
-        ]}
-      />
-
-      {/* BigNumber */}
-      <BigNumber
-        nav="Big number"
-        notes="Let the number breathe. One sentence of context, then move."
-        kicker="Every day"
-        value={<CountUp to={2.4} decimals={1} suffix="B" />}
-        caption="events answered in under a second."
-        foot="Production traffic, trailing 30 days"
-      />
-
-      {/* Section divider */}
-      <Section
-        nav="Part two"
-        notes="Breathe. New chapter."
-        n={2}
-        kicker="Part two"
-        title={
-          <>
-            How it <span className="accent-text">works.</span>
-          </>
-        }
-      />
-
-      {/* Steps */}
-      <Steps
-        nav="How it works"
-        notes="Walk left to right. The point is that step three is where competitors stop."
-        kicker="How it works"
-        title="Three steps to live data."
-        items={[
-          {
-            title: 'Connect',
-            body: 'Point Bolt Slides at your warehouse or event stream. No schema to define.',
-          },
-          {
-            title: 'Model',
-            body: 'It learns your entities and builds the metric graph automatically.',
-          },
-          {
-            title: 'Act',
-            body: 'Ask questions in plain English; alerts fire before dashboards notice.',
-          },
-        ]}
-      />
-
-      {/* Chat */}
-      <Chat
-        nav="Ask anything"
-        notes="Click through the exchange one message at a time — pause after the answer lands."
-        kicker="Ask anything"
-        title="Plain English in. Answers out."
-        name="Bolt Slides"
-        messages={[
-          { from: 'user', text: 'Why did signups dip last week?' },
-          {
-            from: 'ai',
-            text: 'Signups fell 12% after Tuesday’s pricing-page change. The drop is entirely mobile — desktop is flat.',
-          },
-          { from: 'user', text: 'Roll it back for mobile only?' },
-          {
-            from: 'ai',
-            text: 'Done. I’ll alert you when the trend recovers — based on current traffic, roughly 6 hours.',
-          },
-        ]}
-      />
-
-      {/* Comparison */}
-      <Slide
-        nav="Comparison"
-        notes="Lead with realtime. If they push on price, point at the highlighted column."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            Why teams switch
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(22px,4vh,38px)',
-            }}
-          >
-            The honest comparison.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <div style={{ maxWidth: 820, marginInline: 'auto' }}>
-            <Comparison
-              cols={['', 'Bolt Slides', 'Legacy tools']}
-              highlight={0}
-              rows={[
-                { label: 'Realtime by default', values: [true, false] },
-                { label: 'Self-host option', values: [true, false] },
-                {
-                  label: 'Time to first insight',
-                  values: ['5 min', '2 weeks'],
-                },
-                { label: 'Starting price', values: ['$29', '$99'] },
-              ]}
-            />
-          </div>
-        </Reveal>
+      {/* ==================== SLIDE 3: Why Builders? ==================== */}
+      <Slide nav="Why Builders?">
+        <h2 className="headline">Why Builders?</h2>
+        <Comparison
+          leftTitle="Traditional Development"
+          leftItems={["Slow & Expensive", "Requires large engineering teams", "Months to deliver", "High cost"]}
+          rightTitle="Builders AI Factory"
+          rightItems={["Fast & Affordable", "AI-powered engineering team", "Days to weeks", "Dramatically lower cost"]}
+        />
       </Slide>
 
-      {/* Tabs */}
-      <Slide
-        nav="Use cases"
-        notes="Click through the tabs as you speak to each team. Stop on the one that fits the room."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            One platform
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(20px,3vh,30px)',
-            }}
-          >
-            Built for every team.
-          </h2>
-        </Reveal>
-        <Reveal
-          style={{ textAlign: 'center', maxWidth: 780, marginInline: 'auto' }}
-        >
-          <Tabs
-            tabs={[
-              {
-                label: 'Engineering',
-                content: (
-                  <p className="lead">
-                    Trace any request end-to-end, alert on anomalies, ship with
-                    confidence.
-                  </p>
-                ),
-              },
-              {
-                label: 'Data',
-                content: (
-                  <div style={{ height: 180 }}>
-                    <BarChart
-                      data={[
-                        { label: 'Mon', value: 38 },
-                        { label: 'Tue', value: 55 },
-                        { label: 'Wed', value: 47 },
-                        { label: 'Thu', value: 72 },
-                        { label: 'Fri', value: 90 },
-                      ]}
-                      height={180}
-                    />
-                  </div>
-                ),
-              },
-              {
-                label: 'Ops',
-                content: (
-                  <p className="lead">
-                    One source of truth for uptime, cost, and capacity — no
-                    spreadsheets.
-                  </p>
-                ),
-              },
-            ]}
-          />
-        </Reveal>
+      {/* ==================== SLIDE 4: The Problem ==================== */}
+      <Slide center nav="The Problem">
+        <h2 className="headline">The Problem</h2>
+        <p className="subhead">Businesses need software — websites, apps, CRM, ERP, AI tools, dashboards...</p>
+        <p>But they cannot afford traditional software development companies.</p>
       </Slide>
 
-      {/* Split + code */}
-      <Split
-        nav="Developer-first"
-        notes="Three lines, no schema. If there's an engineer in the room, this is the slide for them."
-        kicker="Developer-first"
-        title={
-          <>
-            Drop-in <span className="accent-text">simple.</span>
-          </>
-        }
-        body="Add it to your app in three lines. No SDK to learn, no schema to define."
-        media={
-          <>
-            <div style={panel(0.16)} />
-            <div style={{ position: 'relative', padding: 36, width: '100%' }}>
-              <CodeWindow
-                title="app.ts"
-                highlight={[3]}
-                code={`import { track } from '@bolt-slides/sdk'
-
-track('signup', {
-  plan: 'pro',
-  source: 'landing',
-})`}
-              />
-            </div>
-          </>
-        }
-      />
-
-      {/* Browser frame */}
-      <Slide
-        center
-        nav="Product"
-        notes="Demo the real thing if you can. Otherwise walk the screen top to bottom."
-      >
-        <Reveal>
-          <div className="kicker" style={{ marginBottom: 14 }}>
-            See it live
-          </div>
-          <h2
-            className="headline"
-            style={{
-              fontSize: 'clamp(30px,4.4vw,52px)',
-              marginInline: 'auto',
-              marginBottom: 'clamp(18px,3vh,28px)',
-            }}
-          >
-            Your data, one screen.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <div style={{ maxWidth: 800, marginInline: 'auto', width: '100%' }}>
-            <BrowserFrame url="app.boltslides.dev">
-              <div
-                className="appmock"
-                style={{ minHeight: 'clamp(280px, 42vh, 372px)' }}
-              >
-                <div
-                  className="hide-narrow"
-                  style={{
-                    borderRight: '1px solid var(--hair-2)',
-                    background: 'var(--surface)',
-                    padding: '18px 14px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 4,
-                  }}
-                >
-                  <div
-                    className="kicker"
-                    style={{ marginBottom: 12, paddingLeft: 8 }}
-                  >
-                    Bolt Slides
-                  </div>
-                  {['Overview', 'Events', 'Funnels', 'Cohorts', 'Settings'].map(
-                    (n, i) => (
-                      <div
-                        key={n}
-                        style={{
-                          padding: '8px 12px',
-                          borderRadius: 9,
-                          fontSize: 14,
-                          fontWeight: i === 0 ? 600 : 400,
-                          color:
-                            i === 0 ? 'var(--accent-ink)' : 'var(--fg-muted)',
-                          background: i === 0 ? 'var(--accent)' : 'transparent',
-                        }}
-                      >
-                        {n}
-                      </div>
-                    )
-                  )}
-                </div>
-                <div style={{ padding: '20px 24px', textAlign: 'left' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'space-between',
-                      marginBottom: 16,
-                    }}
-                  >
-                    <h3 style={{ fontSize: 19, fontWeight: 600, margin: 0 }}>
-                      Overview
-                    </h3>
-                    <span className="foot">Last 30 days</span>
-                  </div>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns:
-                        'repeat(auto-fit, minmax(min(110px, 100%), 1fr))',
-                      gap: 12,
-                      marginBottom: 16,
-                    }}
-                  >
-                    {[
-                      ['Revenue', '$1.24M', '▲ 18.2%'],
-                      ['Active users', '48,210', '▲ 9.4%'],
-                      ['Churn', '1.9%', '▼ 0.6%'],
-                    ].map(([l, v, d]) => (
-                      <div key={l} style={{ ...card, padding: 14 }}>
-                        <div className="foot" style={{ marginBottom: 5 }}>
-                          {l}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 23,
-                            fontWeight: 600,
-                            letterSpacing: '-0.02em',
-                            fontVariantNumeric: 'tabular-nums',
-                          }}
-                        >
-                          {v}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 12,
-                            fontWeight: 600,
-                            color: 'var(--primary)',
-                            marginTop: 4,
-                          }}
-                        >
-                          {d}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ ...card, padding: 16 }}>
-                    <LineChart
-                      points={[12, 16, 14, 22, 26, 34, 30, 44]}
-                      height={120}
-                    />
-                  </div>
-                </div>
-              </div>
-            </BrowserFrame>
-          </div>
-        </Reveal>
-      </Slide>
-
-      {/* Charts */}
-      <Slide
-        nav="Metrics"
-        notes="Net retention at 94% is the one to call out — it means the product sells itself."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            The numbers
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(22px,4vh,38px)',
-            }}
-          >
-            Growth you can see.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <div className="cols">
-            <div style={card}>
-              <div className="kicker" style={{ marginBottom: 14 }}>
-                Weekly active
-              </div>
-              <div style={{ height: 150 }}>
-                <BarChart
-                  data={[
-                    { label: 'W1', value: 30 },
-                    { label: 'W2', value: 44 },
-                    { label: 'W3', value: 39 },
-                    { label: 'W4', value: 61 },
-                    { label: 'W5', value: 78 },
-                    { label: 'W6', value: 96 },
-                  ]}
-                  height={150}
-                />
-              </div>
-            </div>
-            <div style={card}>
-              <div className="kicker" style={{ marginBottom: 14 }}>
-                Revenue
-              </div>
-              <LineChart
-                points={[12, 16, 14, 22, 26, 34, 30, 44]}
-                height={150}
-              />
-            </div>
-            <div
-              style={{
-                ...card,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <DonutChart value={94} label="Net retention" size={150} />
-            </div>
-          </div>
-        </Reveal>
-      </Slide>
-
-      {/* Data table */}
-      <Slide
-        nav="Unit economics"
-        notes="Walk the growth column top to bottom — APAC is the story."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            Unit economics
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(22px,4vh,38px)',
-            }}
-          >
-            Growth, by region.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <Table
-            columns={['Region', 'ARR', 'Growth', 'NRR', 'Payback']}
-            rows={[
-              ['North America', '$2.4M', '+38%', '124%', '11 mo'],
-              ['Europe', '$1.1M', '+52%', '118%', '13 mo'],
-              ['APAC', '$0.7M', '+61%', '109%', '14 mo'],
-              ['LATAM', '$0.2M', '+44%', '104%', '16 mo'],
-            ]}
-            highlightCol={2}
-            caption="Company data, FY25 · NRR = net revenue retention"
-          />
-        </Reveal>
-      </Slide>
-
-      {/* Timeline */}
-      <Slide
-        nav="Roadmap"
-        notes="Anchor on 'Now'. The AI insights line is what gets people excited — dwell there."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            Where we're going
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(20px,3vh,32px)',
-            }}
-          >
-            The roadmap.
-          </h2>
-        </Reveal>
-        <div style={{ maxWidth: 560, marginInline: 'auto' }}>
-          <Timeline
-            items={[
-              {
-                time: 'Shipped',
-                title: 'Realtime core',
-                body: 'Sub-second metrics across 28 regions.',
-              },
-              {
-                time: 'Now',
-                title: 'AI insights',
-                body: 'Plain-English answers from your data.',
-              },
-              {
-                time: 'Next',
-                title: 'Enterprise',
-                body: 'SSO, audit logs, and on-prem.',
-              },
-            ]}
-          />
-        </div>
-      </Slide>
-
-      {/* Pricing */}
-      <Pricing
-        nav="Pricing"
-        notes="Anchor on Pro. Enterprise exists so Pro looks reasonable — don't oversell it."
-        kicker="Pricing"
-        title="Simple, honest plans."
-        tiers={[
-          {
-            name: 'Starter',
-            price: '$29',
-            period: '/mo',
-            blurb: 'For small teams getting live.',
-            features: [
-              '1M events / month',
-              'Realtime dashboards',
-              'Community support',
-            ],
-          },
-          {
-            name: 'Pro',
-            price: '$79',
-            period: '/mo',
-            blurb: 'Everything growing teams need.',
-            features: [
-              '10M events / month',
-              'AI insights + alerts',
-              'Self-host option',
-              'Priority support',
-            ],
-            highlight: true,
-          },
-          {
-            name: 'Enterprise',
-            price: 'Custom',
-            blurb: 'Scale, compliance, and control.',
-            features: [
-              'Unlimited events',
-              'SSO + audit logs',
-              'On-prem deploy',
-              'Dedicated CSM',
-            ],
-          },
-        ]}
-      />
-
-      {/* Spotlight principles */}
-      <Slide
-        nav="Principles"
-        notes="Hover the cards for the glow if presenting on a screen. Keep this one short."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            What we believe
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(22px,4vh,38px)',
-            }}
-          >
-            Three principles.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <div className="cols">
-            {[
-              {
-                k: '01',
-                t: 'Fast by default',
-                d: 'Speed is a feature. Everything is realtime.',
-              },
-              {
-                k: '02',
-                t: 'Yours to own',
-                d: 'Your data, your infra, no lock-in.',
-              },
-              {
-                k: '03',
-                t: 'Honest pricing',
-                d: 'No per-seat tax. Scale without surprises.',
-              },
-            ].map((p) => (
-              <SpotlightCard key={p.k}>
-                <div
-                  className="kicker accent-text"
-                  style={{ marginBottom: 12 }}
-                >
-                  {p.k}
-                </div>
-                <h3
-                  style={{
-                    fontSize: 'clamp(20px,2.2vw,26px)',
-                    fontWeight: 600,
-                    margin: '0 0 8px',
-                  }}
-                >
-                  {p.t}
-                </h3>
-                <p
-                  style={{
-                    color: 'var(--fg-muted)',
-                    fontSize: 15,
-                    margin: 0,
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {p.d}
-                </p>
-              </SpotlightCard>
-            ))}
-          </div>
-        </Reveal>
-      </Slide>
-
-      {/* Accordion — FAQ */}
-      <Slide
-        nav="FAQ"
-        notes="Only open the questions they actually ask. Skip the rest to keep momentum."
-      >
-        <Reveal>
-          <div
-            className="kicker"
-            style={{ marginBottom: 12, textAlign: 'center' }}
-          >
-            Common questions
-          </div>
-          <h2
-            className="headline"
-            style={{
-              textAlign: 'center',
-              marginInline: 'auto',
-              marginBottom: 'clamp(20px,3vh,30px)',
-            }}
-          >
-            Frequently asked.
-          </h2>
-        </Reveal>
-        <Reveal>
-          <div style={{ maxWidth: 720, marginInline: 'auto' }}>
-            <Accordion
-              items={[
-                {
-                  title: 'How long does setup take?',
-                  body: 'Five minutes — point Bolt Slides at your warehouse and you are live.',
-                },
-                {
-                  title: 'Can we self-host?',
-                  body: 'Yes. A Docker image and Terraform module ship with every plan.',
-                },
-                {
-                  title: 'How is it priced?',
-                  body: 'Flat monthly, no per-seat tax — you scale without surprises.',
-                },
-              ]}
-            />
-          </div>
-        </Reveal>
-      </Slide>
-
-      {/* Team */}
-      <Team
-        nav="Team"
-        notes="One line per person. The point is the operator pedigree, not the bios."
-        kicker="The team"
-        title="Built by operators."
-        people={[
-          { name: 'Dana Kim', role: 'CEO · ex-Stripe' },
-          { name: 'Ade Obi', role: 'CTO · ex-Datadog' },
-          { name: 'Mara Silva', role: 'Design · ex-Linear' },
-          { name: 'Jon Park', role: 'GTM · ex-Snowflake' },
-        ]}
-      />
-
-      {/* Logos */}
-      <Slide
-        center
-        nav="Customers"
-        notes="Name-drop the two logos most relevant to this audience."
-      >
-        <Reveal>
-          <div className="kicker" style={{ marginBottom: 28 }}>
-            Trusted by teams everywhere
-          </div>
-        </Reveal>
-        <Marquee
+      {/* ==================== SLIDE 5: Vision ==================== */}
+      <Slide nav="Vision">
+        <h2 className="headline">Our Vision</h2>
+        <p className="subhead">Builders is not another AI chatbot.</p>
+        <p>Builders is a complete <strong>AI Software Company</strong> — a virtual engineering organization.</p>
+        <Steps
           items={[
-            'Northwind',
-            'Globex',
-            'Initech',
-            'Umbra',
-            'Hooli',
-            'Vehement',
-            'Soylent',
+            "Customer",
+            "AI Product Manager",
+            "Architecture & Design",
+            "Backend + Frontend",
+            "UI/UX + QA + Security",
+            "DevOps & Deployment",
+            "Working Production-Ready Product",
           ]}
         />
       </Slide>
 
-      {/* Quote */}
-      <Quote
-        nav="Quote"
-        notes="Read it slowly, then stay silent for a second. Let it land."
-        text="We replaced four tools with Bolt Slides and never looked back."
-        name="Dana Kim"
-        role="VP Engineering, Acme"
-      />
+      {/* ==================== SLIDE 6: Mission ==================== */}
+      <Slide center nav="Mission">
+        <h2 className="headline">Our Mission</h2>
+        <p className="subhead">To make professional software development accessible to every business.</p>
+        <p>From a local bakery to a multinational corporation.</p>
+      </Slide>
 
-      {/* CTA */}
-      <Slide
-        center
-        nav="Close"
-        notes="Make the ask explicitly. Leave the contact details on screen while you take questions."
-      >
-        <Reveal>
-          <h2 className="display" style={{ fontSize: 'clamp(40px,7vw,96px)' }}>
-            <span className="accent-text">Let's talk.</span>
-          </h2>
-          <p className="subhead" style={{ marginTop: 16 }}>
-            hello@bolt.new
-          </p>
-        </Reveal>
+      {/* ==================== SLIDE 7: Core Philosophy ==================== */}
+      <Slide center nav="Core Philosophy">
+        <h2 className="headline">Core Philosophy</h2>
+        <Steps
+          items={[
+            "One Prompt",
+            "Complete AI Engineering Team",
+            "Production-Ready Application",
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== SLIDE 8: How Builders Works ==================== */}
+      <Slide nav="How It Works">
+        <h2 className="headline">How Builders Works</h2>
+        <Steps
+          items={[
+            "Customer Requirements",
+            "Requirement Analysis",
+            "Product Manager",
+            "Architecture",
+            "Database + Backend + Frontend",
+            "UI/UX + QA + Reviews",
+            "Generate Application",
+            "Preview & Iterate",
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== SLIDE 9: AI Engineering Team ==================== */}
+      <Slide nav="AI Engineering Team">
+        <h2 className="headline">Meet Our AI Engineering Team</h2>
+        <Team
+          members={[
+            { name: "Product Manager", role: "Understands requirements & prioritizes features" },
+            { name: "Architect", role: "Designs system architecture" },
+            { name: "Backend Engineer", role: "Builds APIs & logic" },
+            { name: "Frontend Engineer", role: "Creates beautiful interfaces" },
+            { name: "UI/UX Designer", role: "Designs user experience" },
+            { name: "QA Engineer", role: "Tests & ensures quality" },
+            { name: "Security Engineer", role: "Ensures security & compliance" },
+            { name: "DevOps Engineer", role: "Handles deployment & infrastructure" },
+            { name: "Reviewer", role: "Reviews every step before moving forward" },
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== SLIDE 10: Review Engine ==================== */}
+      <Slide nav="Review Engine">
+        <h2 className="headline">Review Engine</h2>
+        <p>Every AI engineer reviews the previous stage’s work.</p>
+        <p>Nothing moves forward without approval — ensuring high quality.</p>
+      </Slide>
+
+      {/* ==================== SLIDE 11: BuildersDB ==================== */}
+      <Slide nav="BuildersDB">
+        <h2 className="headline">BuildersDB</h2>
+        <p>Everything is stored and remembered:</p>
+        <ul>
+          <li>Projects & Requirements</li>
+          <li>Reviews & Approvals</li>
+          <li>Tasks & Artifacts</li>
+          <li>Timeline & History</li>
+          <li>Engineering Memory</li>
+        </ul>
+      </Slide>
+
+      {/* ==================== SLIDE 12: Tech Stack ==================== */}
+      <Slide nav="Technology Stack">
+        <h2 className="headline">Current Technology Stack</h2>
+        <div className="grid grid-cols-3 gap-4">
+          {["React", "Remix", "TypeScript", "Tailwind", "Supabase", "Anthropic", "OpenAI", "Gemini", "Vercel", "GitHub", "WebContainers"].map((tech, i) => (
+            <div key={i} className="glass p-4 text-center font-medium">{tech}</div>
+          ))}
+        </div>
+      </Slide>
+
+      {/* ==================== SLIDE 13: Current Features ==================== */}
+      <Slide nav="Current Features">
+        <h2 className="headline">Current Features</h2>
+        <StatGrid
+          stats={[
+            { label: "Project Dashboard", value: "✓" },
+            { label: "AI Engineering Team", value: "✓" },
+            { label: "Review System", value: "✓" },
+            { label: "BuildersDB", value: "✓" },
+            { label: "Generate Application", value: "✓" },
+            { label: "Preview & Iterate", value: "✓" },
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== SLIDE 14: Roadmap ==================== */}
+      <Slide nav="Roadmap">
+        <h2 className="headline">Roadmap</h2>
+        <Timeline
+          items={[
+            { title: "Current", description: "Core MVP" },
+            { title: "Next", description: "GitHub + Templates" },
+            { title: "Q3", description: "Team Collaboration & CRM" },
+            { title: "Q4", description: "First SaaS Products" },
+            { title: "Future", description: "AI Company Operating System + Marketplace" },
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== SLIDE 15-26: Products We Can Build ==================== */}
+      <Slide nav="Products We Can Build">
+        <h2 className="headline">Products We Can Build</h2>
+        <p>From simple websites to complex enterprise systems — all powered by AI.</p>
+      </Slide>
+
+      <Slide nav="Business Websites">
+        <h2 className="headline">Business Websites</h2>
+        <p>Restaurant • Hotel • Clinic • Hospital • Gym • School • Real Estate • Law Firm • Startup • Portfolio • and more...</p>
+      </Slide>
+
+      <Slide nav="Business Management Software">
+        <h2 className="headline">Business Management Software</h2>
+        <p>CRM • ERP • HRMS • Payroll • Inventory • POS • Invoice • Vendor Portal • Employee Portal...</p>
+      </Slide>
+
+      <Slide nav="Healthcare Products">
+        <h2 className="headline">Healthcare Products</h2>
+        <p>Hospital Management • Appointment System • Patient Portal • Telemedicine • Pharmacy • Diagnostic Lab...</p>
+      </Slide>
+
+      <Slide nav="Education Products">
+        <h2 className="headline">Education Products</h2>
+        <p>School ERP • College ERP • Learning Platform • Exam Management • Student & Parent Portal...</p>
+      </Slide>
+
+      <Slide nav="Retail & E-commerce">
+        <h2 className="headline">Retail & E-commerce</h2>
+        <p>Inventory • POS • Online Store • Order Tracking • Warehouse • Franchise Management...</p>
+      </Slide>
+
+      <Slide nav="AI Products">
+        <h2 className="headline">AI Products</h2>
+        <p>AI Chatbots • AI Customer Support • AI HR Assistant • AI Sales Assistant • AI Proposal Generator • AI Agents...</p>
+      </Slide>
+
+      <Slide nav="Mobile Apps">
+        <h2 className="headline">Mobile Apps</h2>
+        <p>Restaurant • Delivery • Taxi • School • Hospital • Fitness • Booking • Finance • Community...</p>
+      </Slide>
+
+      <Slide nav="SaaS Products">
+        <h2 className="headline">SaaS Products</h2>
+        <p>CRM • Project Management • Helpdesk • Subscription Platform • Analytics • Marketing Platform...</p>
+      </Slide>
+
+      {/* ==================== SLIDE 27: Industries ==================== */}
+      <Slide nav="Industries">
+        <h2 className="headline">Possible Industries</h2>
+        <p>Healthcare • Education • Retail • Hospitality • Finance • Real Estate • Manufacturing • Construction • Agriculture • Legal • Government • Logistics • and 80+ more...</p>
+      </Slide>
+
+      {/* ==================== SLIDE 28: Market Expansion ==================== */}
+      <Slide nav="Market Expansion">
+        <h2 className="headline">Our Initial Market</h2>
+        <Steps items={["Coimbatore", "Tamil Nadu", "South India", "India", "Global"]} />
+      </Slide>
+
+      {/* ==================== SLIDE 29-38: Business & Vision ==================== */}
+      <Slide nav="Customer Segments">
+        <h2 className="headline">Customer Segments</h2>
+        <p>Micro Business • Small Business • Medium Business • Enterprise • Government • Healthcare • Education • Startups • Professionals</p>
+      </Slide>
+
+      <Slide nav="Sales Strategy">
+        <h2 className="headline">Sales Strategy (Phase 1)</h2>
+        <p>₹15,000 – ₹75,000 projects → Build portfolio → Testimonials → Referrals → Repeat customers</p>
+      </Slide>
+
+      <Slide nav="Business Model">
+        <h2 className="headline">Business Model</h2>
+        <p>Custom Development • Websites • Mobile Apps • Annual Maintenance • AI Subscriptions • SaaS • Templates • Consulting • Marketplace</p>
+      </Slide>
+
+      <Slide nav="5-Year Vision">
+        <h2 className="headline">5-Year Vision</h2>
+        <p>Thousands of projects • Hundreds of products • Multiple SaaS offerings • International customers • Global software company</p>
+      </Slide>
+
+      <Slide nav="Why We Will Win">
+        <h2 className="headline">Why We Will Win</h2>
+        <p>Business + PMO expertise • AI-powered engineering • Low operational cost • Fast delivery • Scalable platform • Customer-first approach</p>
+      </Slide>
+
+      <Slide nav="12-Month Plan">
+        <h2 className="headline">Next 12-Month Execution Plan</h2>
+        <Timeline
+          items={[
+            { title: "Q1", description: "Complete MVP + First 10 customers" },
+            { title: "Q2", description: "Templates + Maintenance contracts" },
+            { title: "Q3", description: "First SaaS products + Expand in Tamil Nadu" },
+            { title: "Q4", description: "South India expansion + Proposal & CRM modules" },
+          ]}
+        />
+      </Slide>
+
+      {/* ==================== FINAL SLIDE: Call to Action ==================== */}
+      <Slide center nav="Call to Action">
+        <h2 className="headline">"We are not building another software company."</h2>
+        <h3 className="accent-text text-4xl mt-6">We are building a Software Factory.</h3>
+        <p className="mt-8">CubicleTech LLP • Builders</p>
       </Slide>
     </Deck>
   );
