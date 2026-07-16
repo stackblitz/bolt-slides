@@ -1,6 +1,4 @@
-from pathlib import Path
-
-code = r"""import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import Deck from './deck/Deck';
 import Slide from './deck/Slide';
 import Build from './deck/Build';
@@ -1575,8 +1573,3 @@ export default function App() {
     </Deck>
   );
 }
-"""
-
-path = Path("/mnt/data/App.tsx")
-path.write_text(code, encoding="utf-8")
-print(f"Created {path} with {len(code.splitlines())} lines.")
