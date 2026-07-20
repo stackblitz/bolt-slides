@@ -70,6 +70,11 @@ export function LineChart({
   const animate = !isStatic && !reduce;
   const w = 300,
     h = 120;
+  // A line needs at least two points. Bail before the geometry below, which
+  // would divide by zero (points.length - 1) for a single point and throw on
+  // the end-point destructure (coords[-1]) for an empty array.
+  if (points.length < 2)
+    return <div className="ch-wrap" ref={ref} style={{ height }} />;
   const max = Math.max(...points),
     min = Math.min(...points);
   const span = max - min || 1;
