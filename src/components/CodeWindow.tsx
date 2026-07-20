@@ -26,9 +26,27 @@ function tintNumbers(s: string, key: number): ReactNode {
   );
 }
 
+// Find the start of a `//` line comment, skipping `//` that appears inside a
+// string literal (e.g. a URL like 'https://…') so the string isn't cut short.
+function commentStart(line: string): number {
+  let quote = '';
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (quote) {
+      if (c === '\\') i++;
+      else if (c === quote) quote = '';
+    } else if (c === '"' || c === "'" || c === '`') {
+      quote = c;
+    } else if (c === '/' && line[i + 1] === '/') {
+      return i;
+    }
+  }
+  return -1;
+}
+
 function hl(line: string): ReactNode {
-  // split off a trailing line comment
-  const ci = line.indexOf('//');
+  // split off a trailing line comment (ignoring `//` inside strings)
+  const ci = commentStart(line);
   const code = ci >= 0 ? line.slice(0, ci) : line;
   const comment = ci >= 0 ? line.slice(ci) : '';
   // strings first (odd indices), then keywords, then numeric literals
