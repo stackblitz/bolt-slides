@@ -1,45 +1,39 @@
 /* ===================================================================
-   THEME TOKENS — edit ONLY this :root block to re-theme the whole deck.
-   The SAME token vocabulary as the `slides` (Slidev) and `webdeck` skills,
-   so a brand looks identical across all of them. The values below are a
-   "dark product" default — REPLACE them to match the brief or the brand.
+   THEME TOKENS — Couch, "Product" variant.
+   Flat neutral dark, all-sans, one accent: the iMessage blue the
+   product actually lives in. No gradients doing the talking; the
+   phone and the type do.
    =================================================================== */
 :root {
   /* Surfaces */
-  --bg: #05070a;
-  --bg-grad-1: rgba(79, 229, 176, 0.12);
-  --bg-grad-2: rgba(41, 192, 240, 0.08);
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-2: rgba(255, 255, 255, 0.07);
+  --bg: #0a0a0c;
+  --bg-grad-1: rgba(10, 132, 255, 0.08);
+  --bg-grad-2: rgba(94, 92, 230, 0.05);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.065);
 
   /* Ink */
-  --fg: #f4f7fa;
-  --fg-muted: #9aa4b2;
-  --fg-faint: #626d7d;
+  --fg: #f2f3f5;
+  --fg-muted: #9ba1ab;
+  --fg-faint: #5e646e;
 
   /* Hairlines */
-  --hair: rgba(255, 255, 255, 0.1);
-  --hair-2: rgba(255, 255, 255, 0.06);
+  --hair: rgba(255, 255, 255, 0.09);
+  --hair-2: rgba(255, 255, 255, 0.055);
 
-  /* Accent — ONE accent. May be a 2–4 stop gradient within ~80° of hue. */
-  --primary: #4fe5b0;
-  --accent: linear-gradient(
-    115deg,
-    #c8f56e 0%,
-    #5aeeb0 42%,
-    #34dcd8 74%,
-    #29c0f0 100%
-  );
-  --accent-ink: #04140e;
+  /* Accent — ONE accent: iMessage blue. */
+  --primary: #0a84ff;
+  --accent: linear-gradient(120deg, #3ba0ff 0%, #0a84ff 100%);
+  --accent-ink: #ffffff;
 
   /* Radius */
-  --radius: 22px;
-  --radius-sm: 12px;
-  --radius-lg: 26px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
 
   /* Depth */
   --shadow: 0 50px 120px -50px rgba(0, 0, 0, 0.9);
-  --glow: 0 30px 80px -40px rgba(79, 229, 176, 0.5);
+  --glow: 0 30px 80px -40px rgba(10, 132, 255, 0.45);
 
   /* Type */
   --font-head: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
@@ -54,8 +48,8 @@
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Atmosphere */
-  --grain: 0.035;
-  --vignette: rgba(0, 0, 0, 0.22);
+  --grain: 0.03;
+  --vignette: rgba(0, 0, 0, 0.25);
 
   /* Responsive gutter — fluid side / vertical padding */
   --gutter: clamp(28px, 6vw, 120px);

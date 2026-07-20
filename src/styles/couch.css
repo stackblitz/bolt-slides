@@ -1,0 +1,470 @@
+/* ── Couch-specific slide furniture (authored for this deck; tokens only) ── */
+
+/* statement slides breathe a little wider in this deck */
+.slide.center .subhead {
+  max-width: 46ch;
+}
+
+/* ============ PhoneChat — the Mia texting demo ============
+   Deliberately NOT tokenized: this is a native dark-mode iMessage surface,
+   because iMessage IS the product surface — it must match the real
+   screenshots shown beside it, in every deck theme. */
+.pc-phone {
+  position: relative;
+  width: min(340px, 78vw, 38vh);
+  border-radius: 44px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: var(--shadow), var(--glow);
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.pc-sbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 14px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.pc-sbar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.pc-sig {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 1.5px;
+}
+.pc-sig span {
+  width: 3px;
+  border-radius: 1px;
+  background: #fff;
+}
+.pc-sig span:nth-child(1) {
+  height: 4px;
+}
+.pc-sig span:nth-child(2) {
+  height: 6px;
+}
+.pc-sig span:nth-child(3) {
+  height: 8px;
+  opacity: 0.4;
+}
+.pc-sig span:nth-child(4) {
+  height: 10px;
+  opacity: 0.4;
+}
+.pc-batt {
+  width: 22px;
+  height: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 3.5px;
+  padding: 1.5px;
+}
+.pc-batt i {
+  display: block;
+  height: 100%;
+  width: 62%;
+  border-radius: 1.5px;
+  background: #fff;
+}
+.pc-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86px;
+  height: 22px;
+  border-radius: 12px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.pc-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 18px 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.pc-ava {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #9a9aa0, #7c7c82);
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+}
+.pc-name {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #fff;
+}
+.pc-sub {
+  font-size: 10.5px;
+  color: #8e8e93;
+  letter-spacing: 0.02em;
+}
+.pc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 6px 10px;
+  min-height: clamp(240px, 40vh, 380px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+/* bottom-anchor without breaking scroll (flex-end + overflow can't reach
+   the top; margin-top:auto on the first child can) */
+.pc-body > :first-child {
+  margin-top: auto;
+}
+.pc-body::-webkit-scrollbar {
+  display: none;
+}
+/* short viewports: the thread scrolls inside the phone (auto-follows the
+   newest bubble) instead of pushing the slide past the fold */
+@media (max-height: 940px) {
+  .pc-body {
+    max-height: 52vh;
+  }
+}
+.pc-sep {
+  align-self: center;
+  font-size: 10.5px;
+  color: #8e8e93;
+  padding: 2px 0 4px;
+  letter-spacing: 0.02em;
+}
+.pc-status {
+  align-self: flex-end;
+  font-size: 10px;
+  color: #8e8e93;
+  margin-top: -3px;
+  padding-right: 6px;
+}
+.pc-msg {
+  max-width: 82%;
+  padding: 8px 12px;
+  border-radius: 17px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  text-align: left;
+  width: fit-content;
+}
+.pc-msg.mia {
+  align-self: flex-start;
+  background: #26262b;
+  color: #ffffff;
+  border-bottom-left-radius: 5px;
+}
+.pc-msg.me {
+  align-self: flex-end;
+  background: #0a84ff;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+.pc-typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 3px 2px;
+}
+.pc-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8e8e93;
+  animation: pc-bounce 1.2s infinite ease-in-out;
+}
+.pc-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.pc-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes pc-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-typing span {
+    animation: none;
+  }
+}
+.pc-input {
+  margin-top: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: #8e8e93;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ============ Receipts — real screenshots from the live build ============ */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 2vw, 22px);
+  max-width: 780px;
+  margin-inline: auto;
+  align-items: start;
+}
+.shot {
+  border-radius: clamp(12px, 1.6vw, 24px);
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  box-shadow: var(--shadow);
+  background: #000;
+}
+.shot img {
+  width: 100%;
+  display: block;
+}
+
+/* ============ Debrief card ============ */
+.db-card {
+  width: min(460px, 88vw);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  border: 1px solid var(--hair);
+  box-shadow: var(--shadow);
+  padding: clamp(18px, 2.4vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vh, 18px);
+  text-align: left;
+}
+.db-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--hair-2);
+  padding-bottom: 10px;
+}
+.db-title {
+  font-weight: 650;
+  font-size: 15.5px;
+  color: var(--fg);
+}
+.db-meta {
+  font-size: 11.5px;
+  color: var(--fg-faint);
+  font-family: var(--font-mono);
+}
+.db-k {
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 7px;
+}
+.db-sec {
+  display: flex;
+  flex-direction: column;
+}
+.db-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  padding: 3px 0;
+}
+.db-row svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-top: 2.5px;
+}
+.db-row.ok svg {
+  color: var(--primary);
+}
+.db-row.mv svg {
+  color: var(--fg-faint);
+}
+.db-drill {
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 12px 14px;
+}
+.db-drill-k {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+.db-drill p {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 550;
+  line-height: 1.45;
+}
+
+/* ============ WedgeModel — draggable unit economics ============ */
+.wm {
+  max-width: 780px;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  padding: clamp(20px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.4vh, 24px);
+  text-align: left;
+}
+.wm-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: clamp(16px, 2.6vw, 30px);
+}
+.wm-ctl {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wm-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-muted);
+}
+.wm-val {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg);
+}
+.wm-hint {
+  font-size: 11.5px;
+  color: var(--fg-faint);
+}
+.wm input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  outline: none;
+  cursor: ew-resize;
+}
+.wm input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid color-mix(in srgb, var(--bg) 70%, transparent);
+  box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--primary) 70%, transparent);
+}
+.wm input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid color-mix(in srgb, var(--bg) 70%, transparent);
+}
+.wm-out {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 12px;
+}
+.wm-cell {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hair-2);
+  background: color-mix(in srgb, var(--bg) 40%, transparent);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.wm-cell.dim .wm-fig {
+  color: var(--fg-muted);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+.wm-k {
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.wm-fig {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3.2vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wm-fig.sm {
+  font-size: clamp(18px, 2.2vw, 26px);
+}
+.wm-foot {
+  font-size: 12.5px;
+  color: var(--fg-faint);
+  border-top: 1px solid var(--hair-2);
+  padding-top: 12px;
+  line-height: 1.5;
+}
+
+/* small-screen safety for the phone inside a split panel */
+@media (max-width: 760px) {
+  .pc-phone {
+    width: min(290px, 84vw);
+    border-radius: 34px;
+    padding-top: 10px;
+  }
+  .pc-body {
+    min-height: 200px;
+    max-height: 34vh;
+  }
+  .pc-head {
+    padding: 18px 0 8px;
+  }
+  .pc-ava {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+  .pc-input {
+    display: none;
+  }
+  .pc-notch {
+    display: none;
+  }
+}

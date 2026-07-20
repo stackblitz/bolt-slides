@@ -130,7 +130,7 @@ function GlobeCanvas({
     const atmo = mix(fg, primary, 0.45);
     const theta = 0.28;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let phi = 1.9; // open on the Americas
+    let phi = 3.75; // open on Australia — this deck's story starts in Melbourne
     let raf = 0;
     let size = 0;
     const marks = markers.map((m) => ({
