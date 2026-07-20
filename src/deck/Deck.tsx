@@ -361,6 +361,7 @@ export default function Deck({ children }: { children: ReactNode }) {
       <button
         className="noir-icon-btn"
         data-tip="Previous"
+        aria-label="Previous"
         disabled={!hasPrev}
         onClick={prev}
       >
@@ -373,6 +374,7 @@ export default function Deck({ children }: { children: ReactNode }) {
       <button
         className="noir-icon-btn"
         data-tip="Next"
+        aria-label="Next"
         disabled={!hasNext}
         onClick={next}
       >
@@ -405,6 +407,7 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className="noir-icon-btn sm"
               data-tip="Close"
+              aria-label="Close sidebar"
               onClick={() => setRailOpen(false)}
             >
               <IconClose />
@@ -435,6 +438,7 @@ export default function Deck({ children }: { children: ReactNode }) {
               <button
                 className="noir-icon-btn sm"
                 data-tip="Close"
+                aria-label="Close grid view"
                 onClick={() => setGridOpen(false)}
               >
                 <IconClose />
@@ -491,6 +495,8 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className={'noir-icon-btn' + (railOpen ? ' on' : '')}
               data-tip="Sidebar (S)"
+              aria-label="Sidebar"
+              aria-pressed={railOpen}
               onClick={toggleRail}
             >
               <IconSidebar />
@@ -498,6 +504,8 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className={'noir-icon-btn' + (gridOpen ? ' on' : '')}
               data-tip="Grid view (G)"
+              aria-label="Grid view"
+              aria-pressed={gridOpen}
               onClick={toggleGrid}
             >
               <IconGrid />
@@ -508,6 +516,8 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className={'noir-icon-btn' + (drawing ? ' on' : '')}
               data-tip="Annotate (A)"
+              aria-label="Annotate"
+              aria-pressed={drawing}
               onClick={() => setDrawing((v) => !v)}
             >
               <IconPencil />
@@ -515,6 +525,7 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className="noir-icon-btn"
               data-tip={fs ? 'Exit fullscreen (F)' : 'Fullscreen (F)'}
+              aria-label={fs ? 'Exit fullscreen' : 'Enter fullscreen'}
               onClick={toggleFs}
             >
               {fs ? <IconShrink /> : <IconExpand />}
@@ -522,6 +533,7 @@ export default function Deck({ children }: { children: ReactNode }) {
             <button
               className="noir-icon-btn"
               data-tip="Presenter — new tab (P)"
+              aria-label="Open presenter view"
               onClick={openPresenter}
             >
               <IconPresent />

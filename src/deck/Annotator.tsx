@@ -55,7 +55,15 @@ const TOOLS: { id: Tool; label: string; path: string }[] = [
   },
 ];
 const COLORS = ['var(--primary)', '#ffffff', '#ef4444', '#f5b73a', '#4aa8ff'];
+const COLOR_LABELS: Record<string, string> = {
+  'var(--primary)': 'Accent',
+  '#ffffff': 'White',
+  '#ef4444': 'Red',
+  '#f5b73a': 'Amber',
+  '#4aa8ff': 'Blue',
+};
 const SIZES = [3, 6, 11];
+const SIZE_LABELS = ['Small stroke', 'Medium stroke', 'Large stroke'];
 
 const IconUndo = () => (
   <svg
@@ -430,6 +438,8 @@ export default function Annotator({
               key={t.id}
               className={'ann-btn' + (tool === t.id ? ' on' : '')}
               data-tip={t.label}
+              aria-label={t.label}
+              aria-pressed={tool === t.id}
               onClick={() => setTool(t.id)}
             >
               <svg
@@ -450,16 +460,20 @@ export default function Annotator({
               key={c}
               className={'ann-color' + (color === c ? ' on' : '')}
               data-tip="Color"
+              aria-label={(COLOR_LABELS[c] ?? 'Color') + ' pen'}
+              aria-pressed={color === c}
               onClick={() => setColor(c)}
               style={{ background: c }}
             />
           ))}
           <span className="ann-sep" />
-          {SIZES.map((s) => (
+          {SIZES.map((s, i) => (
             <button
               key={s}
               className={'ann-size' + (size === s ? ' on' : '')}
               data-tip="Stroke size"
+              aria-label={SIZE_LABELS[i]}
+              aria-pressed={size === s}
               onClick={() => setSize(s)}
             >
               <span style={{ width: s + 4, height: s + 4 }} />
@@ -469,6 +483,7 @@ export default function Annotator({
           <button
             className="ann-btn"
             data-tip="Undo"
+            aria-label="Undo"
             onClick={() => {
               strokes.current = strokes.current.slice(0, -1);
               commit();
@@ -479,6 +494,7 @@ export default function Annotator({
           <button
             className="ann-btn"
             data-tip="Clear all"
+            aria-label="Clear all"
             onClick={() => {
               strokes.current = [];
               commit();
