@@ -1827,6 +1827,61 @@ strong {
   grid-template-columns: 180px 1fr;
 }
 @media (max-width: 640px) {
+  /* a slide taller than the screen scrolls instead of clipping both ends
+     (flex centering can't overflow-scroll upward) — `safe center` keeps short
+     slides centered and degrades to top-aligned where unsupported; the extra
+     bottom padding only bites on slides that scroll, clearing the dock */
+  .slide {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    justify-content: safe center;
+    padding-bottom: calc(var(--gutter-y) + 92px);
+  }
+  /* the -15% atmosphere bleed (and drift's scale) would give every slide
+     ~140px of phantom scroll once slides are scroll containers — pin the
+     gradient static; the 26s drift isn't perceptible at phone size */
+  .slide::before {
+    inset: 0;
+    animation: none;
+    transform: none;
+  }
+  /* stacked split: media keeps its natural height instead of being crushed
+     into the leftover row, and the slide scrolls when the stack runs long */
+  .slide.full {
+    padding-bottom: 0;
+  }
+  .split {
+    height: auto;
+    min-height: 100%;
+    grid-template-rows: auto minmax(min-content, 1fr);
+    padding-bottom: 92px;
+  }
+  /* stat grid: 2-up compact cards so six stats fit one phone screen —
+     full-width stacking runs ~1.5 screens tall */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .stat-card {
+    padding: 14px 12px;
+    gap: 4px;
+  }
+  .stat-card .tick {
+    margin-bottom: 2px;
+  }
+  .stat-value {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+  .stat-label {
+    font-size: 13.5px;
+    margin-top: 4px;
+  }
+  .stat-caption {
+    font-size: 12px;
+    line-height: 1.35;
+  }
   .appmock {
     grid-template-columns: 1fr;
   }
@@ -1841,17 +1896,26 @@ strong {
   .ch-donut {
     --ch-size: 120px !important;
   }
-  /* data tables keep their column integrity and pan horizontally instead */
+  /* data tables FIT the phone width — sideways panning buries the far
+     columns. Type/pads shrink, headers and label cells wrap; number strings
+     carry no break points so they stay whole. overflow-x remains only as the
+     escape hatch for genuinely too-wide tables. */
   .dtable {
     overflow-x: auto;
   }
   .dtable table {
-    min-width: 540px;
+    min-width: 0;
+    font-size: 11px;
   }
-  .dtable th,
+  .dtable th {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    padding: 7px 6px;
+    white-space: normal;
+  }
   .dtable td {
-    white-space: nowrap;
-    padding: 9px 12px;
+    padding: 8px 6px;
+    white-space: normal;
   }
 }
 
@@ -2716,7 +2780,7 @@ strong {
 @media (max-width: 640px) {
   .noir-dock {
     opacity: 1;
-    bottom: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2768,7 +2832,7 @@ strong {
   /* annotation toolbar: one swipeable row on phones (wrapping made the
      999px-radius pill collapse into a pinched oval); clears the taller dock */
   .ann-bar {
-    bottom: 104px;
+    bottom: calc(104px + env(safe-area-inset-bottom, 0px));
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: auto;

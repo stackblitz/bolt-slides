@@ -216,6 +216,10 @@ to the screen, so nothing scales-and-clips:
   with **`.appmock`** (sidebar + content; sidebar column collapses on phones) and
   put **`.hide-narrow`** on chrome that should vanish on small screens.
 - **One idea per slide**, sized to fill ~one screen with deliberate negative space.
+- **Phones (≤640px)**: a slide taller than the screen scrolls vertically instead of
+  clipping, and swiping left/right pages the deck (`StatGrid` also compacts to
+  2-up cards there — built in). Still aim to fit one screen; scroll is the escape
+  hatch, not the layout plan.
 - **Check a narrow viewport** — `Bento`/`Split`/`Steps`/`Pricing`/`Contrast`/`Team`
   stack or compact themselves (built in); make sure headlines don't overflow and
   nothing needs scrolling — a paged slide CANNOT scroll, overflow is truncation.

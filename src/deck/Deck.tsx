@@ -29,6 +29,7 @@ import {
      ← / ↑           previous            S sidebar     G grid view
      Home / End      first / last        A annotate    P presenter (new tab)
      F fullscreen    H hide/show the UI
+     swipe ← / →     next / previous on touch (vertical drags scroll the slide)
    Copy verbatim; theme only via the :root tokens. ───────────────────────── */
 
 const fmt = (s: number) =>
@@ -262,6 +263,48 @@ export default function Deck({ children }: { children: ReactNode }) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [next, prev, go, total, toggleRail, toggleGrid, toggleFs, openPresenter]);
+
+  // touch: a quick horizontal swipe pages; vertical drags stay free so a
+  // slide taller than a phone screen can scroll (see base.css ≤640px)
+  useEffect(() => {
+    let x0 = 0,
+      y0 = 0,
+      t0 = 0,
+      live = false;
+    const onStart = (e: TouchEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (
+        e.touches.length !== 1 ||
+        t?.closest(
+          '.noir-dock,.noir-rail,.noir-grid,.noir-presenter,.ann-bar,.ann-canvas,button,a,textarea,input'
+        )
+      ) {
+        live = false;
+        return;
+      }
+      live = true;
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+      t0 = performance.now();
+    };
+    const onEnd = (e: TouchEvent) => {
+      if (!live) return;
+      live = false;
+      const dx = e.changedTouches[0].clientX - x0;
+      const dy = e.changedTouches[0].clientY - y0;
+      // slow drags and diagonal/vertical moves are scroll intent, not paging
+      if (performance.now() - t0 > 600) return;
+      if (Math.abs(dx) < 48 || Math.abs(dx) < 1.5 * Math.abs(dy)) return;
+      if (dx < 0) next();
+      else prev();
+    };
+    window.addEventListener('touchstart', onStart, { passive: true });
+    window.addEventListener('touchend', onEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onStart);
+      window.removeEventListener('touchend', onEnd);
+    };
+  }, [next, prev]);
 
   // safety net: if the authored deck kept the placeholder tab title, derive
   // one from the current slide's heading so shared links look right.
