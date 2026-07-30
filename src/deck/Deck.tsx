@@ -298,8 +298,14 @@ export default function Deck({ children }: { children: ReactNode }) {
     c.onmessage = (e) => {
       if (e.data?.type === 'state') {
         applyingRemote.current = true;
-        setSlide(e.data.slide);
+        const s = e.data.slide;
+        setSlide(s);
         setClicks(e.data.clicks);
+        // mirror go(): reset the build ceiling for the incoming slide. Without
+        // this the synced tab carries the previous slide's curMax forward
+        // (registerMax only ever raises it), leaving hasNext/hasPrev and the
+        // nav arrows wrong after the presenter jumps between slides.
+        setCurMax(Math.max(maxMap.current[s] || 0, e.data.clicks));
       }
     };
     return () => c.close();
