@@ -8,6 +8,7 @@
 import type { CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from '../deck/useInView';
+import { useDeck } from '../deck/DeckContext';
 
 export type CompRow = { label: string; values: (boolean | string)[] };
 
@@ -47,6 +48,7 @@ export default function Comparison({
 }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
   const reduce = useReducedMotion();
+  const { isStatic } = useDeck();
   const vcols = cols.length - 1;
   return (
     <div
@@ -68,7 +70,7 @@ export default function Comparison({
         <motion.div
           key={ri}
           className="cmp-row"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
+          initial={isStatic || reduce ? false : { opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : undefined}
           transition={{
             duration: 0.45,

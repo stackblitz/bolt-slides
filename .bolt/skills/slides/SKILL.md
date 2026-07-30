@@ -294,8 +294,8 @@ trigger or that it exists — just deliver the demo.
 - [ ] The engine + chrome in `src/deck/` are **left untouched**; the
       dock + thumbnail rail appear, arrow keys advance AND step back through builds,
       fullscreen / sidebar (S) / grid view (G) work, annotation (A) has full tools and
-      persists per slide, presenter (P) opens a synced new tab, `H` hides the UI, and
-      the URL hash tracks the slide.
+      persists per slide, presenter (P) opens a synced new tab, `H` hides the UI,
+      export (E) offers a PDF download, and the URL hash tracks the slide.
 - [ ] The deck is **authored, not reskinned** — topic, structure, copy, names are the
       user's, with no starter leftovers (no "Title"/"Northwind").
 - [ ] If a brand/URL was given, `--primary`, fonts, and logo come from that brand.

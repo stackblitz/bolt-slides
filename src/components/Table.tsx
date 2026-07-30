@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from '../deck/useInView';
+import { useDeck } from '../deck/DeckContext';
 
 /* A data-rich table done properly: uppercase mono-ruled header, hairline rows,
    right-aligned tabular numerals (first column left for labels), an optional
@@ -31,6 +32,7 @@ export default function Table({
 }) {
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
   const reduce = useReducedMotion();
+  const { isStatic } = useDeck();
   const align = (c: TableColumn) =>
     typeof c === 'string' ? undefined : c.align;
   const alignClass = (i: number) => {
@@ -60,7 +62,7 @@ export default function Table({
               <motion.tr
                 key={ri}
                 className={ri === highlightRow ? 'hl-row' : undefined}
-                initial={reduce ? false : { opacity: 0 }}
+                initial={isStatic || reduce ? false : { opacity: 0 }}
                 animate={inView ? { opacity: 1 } : undefined}
                 transition={{
                   duration: 0.4,

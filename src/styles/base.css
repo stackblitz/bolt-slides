@@ -116,6 +116,28 @@ body {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+/* PDF export rasterizes slides via html-to-image, which doesn't honor
+   mix-blend-mode — the 3.5%-opacity grain above renders as full-strength
+   noise. It's decoration, not content, so drop it for the capture. */
+.export-capture .slide::after {
+  display: none;
+}
+/* VisualDashboard's draw-ins are CSS @keyframes, not transitions, so they
+   always play their full timeline on mount regardless of isStatic — snap
+   them to their end state for capture, same as the reduced-motion rules
+   below do for the live app. */
+.export-capture .dline,
+.export-capture .dspark path {
+  stroke-dashoffset: 0 !important;
+  animation: none !important;
+}
+.export-capture .dfill-area {
+  opacity: 1;
+}
+.export-capture .dbar-track span {
+  transform: scaleY(1) !important;
+  animation: none !important;
+}
 
 /* ── Fluid type atoms ───────────────────────────────────────────── */
 h1,
@@ -2111,6 +2133,21 @@ strong {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* Export-in-progress spinner, swapped in for the download icon */
+.noir-spinner {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #e8e8ea;
+  animation: noir-spin 0.7s linear infinite;
+}
+@keyframes noir-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Left thumbnail rail */
