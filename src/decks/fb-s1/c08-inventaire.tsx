@@ -44,9 +44,9 @@ const COLS = [
 ] as const;
 
 const EXEMPLES = [
-  ['Rédiger la réponse à une demande de prix reçue par courriel', 'Générer', 'Un premier jet immédiat au lieu de la page blanche, plusieurs fois par semaine', 'Un prix ou un délai inventé ; un ton générique qui ne ressemble pas à la boîte', '1'],
-  ['Transformer les commentaires d’épreuve d’un client en liste de corrections claire pour la production', 'Analyser', 'Moins d’allers-retours et moins d’oublis entre le bon à tirer et la presse', 'Une nuance du client aplatie ou perdue', '1'],
-  ['Retrouver quel substrat convient pour une enseigne extérieure exposée au sel', 'Chercher', 'Moins d’appels au fournisseur pour une question de base', 'Spécification plausible mais fausse, à valider sur la fiche technique', '1'],
+  ['Rédiger la réponse à une demande de soumission pour des armoires de cuisine sur mesure, à partir des dimensions et de l’essence demandées', 'Générer', 'Un premier jet immédiat au lieu de la page blanche, à chaque demande reçue', 'Un prix, un délai ou une essence inventés ; un ton générique qui ne ressemble pas à l’entreprise', '1'],
+  ['Vérifier que le bon de commande et la liste de débit concordent avant de lancer la production', 'Analyser', 'Moins d’erreurs découvertes à l’atelier, une fois le bois coupé', 'Un écart manqué : le contrôle reste à faire par une personne', '1'],
+  ['Trouver dans les fiches techniques des fournisseurs le panneau ou le vernis qui convient à l’usage (humidité, intérieur ou extérieur)', 'Chercher', 'Moins de temps passé à fouiller les fiches pour une question de base', 'Spécification plausible mais fausse, à valider sur la fiche technique', '1'],
 ] as const;
 
 const grid: CSSProperties = {
@@ -72,50 +72,19 @@ export default [
     center
     nav="Consigne — inventaire"
     notes={n(
-      'Ouvrir le gabarit de collecte à l’écran ; il est déposé dans les Documents de la cohorte.',
-      'Un seul livrable : l’inventaire du groupe, tâches réelles par famille, gain et risque.'
+      'Exercice individuel : chacun fait sa propre liste.',
+      'Montrer ensuite à l’écran comment le faire dans la plateforme.'
     )}
   >
     <Kicker step={7} />
     <Reveal>
       <h2 className="headline" style={{ ...head, ...center }}>
-        Un seul livrable : <span className="accent-text">l'inventaire du groupe</span>
+        Un exercice <span className="accent-text">chacun pour soi</span>
       </h2>
+      <p style={{ ...body, fontSize: 'clamp(20px, 2.2vw, 30px)', maxWidth: '40ch', marginTop: 'clamp(16px, 3vh, 30px)', ...center }}>
+        Je vous montre comment le faire dans la plateforme.
+      </p>
     </Reveal>
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: 'clamp(12px, 2vw, 24px)',
-        marginTop: 'clamp(20px, 4vh, 40px)',
-        maxWidth: 1150,
-        marginInline: 'auto',
-      }}
-    >
-      {[
-        ['1', 'Chacun pour soi', 'Après le cadrage, votre propre liste.'],
-        ['2', 'En plénière', 'La mise en commun.'],
-      ].map(([k, t, d]) => (
-        <div key={k} style={{ display: 'flex', gap: 'clamp(12px, 2vw, 24px)' }}>
-          <div style={{ ...card, minWidth: 220, maxWidth: 280 }}>
-            <div className="figure" style={{ fontSize: 'clamp(28px, 3vw, 42px)', color: 'var(--accent)' }}>{k}</div>
-            <div style={{ ...body, fontWeight: 600 }}>{t}</div>
-            <div style={{ ...body, color: 'var(--fg-muted)', fontSize: 'clamp(15px, 1.4vw, 19px)' }}>{d}</div>
-          </div>
-          <Arrow />
-        </div>
-      ))}
-      <Doc style={{ minWidth: 280, maxWidth: 380 }}>
-        <div style={{ ...body, fontWeight: 700 }}>L'inventaire du groupe</div>
-        <ul style={{ ...body, fontSize: 'clamp(15px, 1.4vw, 19px)', margin: '10px 0 0', paddingLeft: '1.1em', display: 'grid', gap: 4 }}>
-          <li>Des tâches réelles</li>
-          <li>Classées par famille</li>
-          <li>Avec le gain espéré et le risque</li>
-        </ul>
-        <div style={{ ...source, marginTop: 12, color: 'var(--fg-muted)' }}>Versé dans les Documents de la cohorte, le jour même</div>
-      </Doc>
-    </div>
   </Slide>,
 
   /* s1-e33 */
@@ -143,19 +112,19 @@ export default [
     <p style={{ ...source, ...center }}>Source : Stanford AI Index 2026, p. 219.</p>
   </Slide>,
 
-  /* s1-e34 — example rows are from the graphic-communications sector, as in the brief (content fix pending upstream). */
+  /* s1-e34 — example rows from content/mandats/formabois/exercices/inventaire-des-irritants.md. */
   <Slide
     key="s1-e34"
     center
     nav="Individuellement"
     notes={n(
-      'Chacun seul, depuis son agenda et ses courriels : 5 à 8 lignes, niveau 0 à 4 à l’instinct.',
+      'Voilà à peu près à quoi ressemblera le résultat : 5 à 8 lignes, niveau 0 à 4 à l’instinct.',
       'Les trois exemples sont au niveau 1 : normal, c’est là que se joue l’essentiel.',
       'Tâche hors des trois familles : la garder.'
     )}
   >
     <p style={{ ...body, maxWidth: '62ch', ...center }}>
-      Ouvrez votre agenda ou vos courriels des deux dernières semaines : <strong>la mémoire ment, l'agenda non.</strong>{' '}
+      <strong>Voilà à peu près à quoi ressemblera le résultat.</strong>{' '}
       Une ligne par tâche, <strong className="accent-text">visez 5 à 8 lignes</strong>, notez tout, même le banal.
     </p>
     <div style={{ maxWidth: 1240, marginInline: 'auto', marginTop: 'clamp(12px, 2.5vh, 24px)', display: 'grid', gap: 8 }}>
@@ -168,7 +137,7 @@ export default [
         ))}
       </div>
       <Build at={1} style={{ display: 'grid', gap: 8 }}>
-        <div style={{ ...source, marginTop: 0, textAlign: 'left' }}>Exemple, trois lignes fictives (secteur des communications graphiques)</div>
+        <div style={{ ...source, marginTop: 0, textAlign: 'left' }}>Exemple, trois lignes fictives (secteur de la transformation du bois)</div>
         {EXEMPLES.map((r) => (
           <div key={r[0]} style={grid}>
             {r.map((c, i) => (
@@ -190,19 +159,13 @@ export default [
   <Slide
     key="s1-e35"
     center
-    nav="En plénière"
+    nav="Par famille"
     notes={n(
       'Regrouper les lignes par famille à l’écran : les mêmes irritants reviennent d’une entreprise à l’autre.',
       'Finir par la colonne risque : repérer ce que hallucinations et confidentialité couvrent déjà.'
     )}
   >
-    <Reveal>
-      <h2 className="headline" style={{ ...head, ...center }}>En plénière</h2>
-      <p style={{ ...body, maxWidth: '56ch', marginTop: 10, ...center }}>
-        Chacun donne une ligne : celle qui l'irrite le plus, ou celle dont il n'est pas sûr.
-      </p>
-    </Reveal>
-    <div className="cols" style={{ gap: 16, maxWidth: 1150, marginInline: 'auto', marginTop: 'clamp(16px, 3vh, 30px)' }}>
+    <div className="cols" style={{ gap: 16, maxWidth: 1150, marginInline: 'auto' }}>
       {FAMILLES.map((f) => (
         <div key={f} style={{ ...card, minHeight: 'clamp(160px, 28vh, 300px)' }}>
           <div style={{ fontFamily: 'var(--font-head)', fontWeight: 700, fontSize: 'clamp(22px, 2.4vw, 32px)', color: 'var(--accent)', textAlign: 'center' }}>
@@ -268,8 +231,9 @@ export default [
           </Build>
         ))}
         <Build at={3}>
-          <p style={{ ...body, fontWeight: 600, color: 'var(--accent)', textAlign: 'center' }}>
-            Ce que vous écrivez aujourd'hui, vous le retrouverez en séance 5.
+          <p style={{ ...body, fontSize: 'clamp(15px, 1.4vw, 19px)', textAlign: 'center' }}>
+            <strong className="accent-text">Rappel : ce que vous donnez aujourd'hui nourrit les prochaines séances.</strong>{' '}
+            C'est l'intérêt de ces exercices, en plus d'apprendre la mécanique des IA.
           </p>
         </Build>
       </div>

@@ -133,28 +133,14 @@ function Tirage() {
   );
 }
 
-/* s1-e28 — a 0–100 % range bar. */
-function Range({ from, to, label, tone }: { from: number; to: number; label: string; tone: string }) {
+/* s1-e28 — one big contrasted figure per case. */
+function Figure({ label, value, tone, bg }: { label: string; value: string; tone: string; bg: string }) {
   return (
-    <div style={{ display: 'grid', gap: 8 }}>
-      <div style={{ ...body, display: 'flex', justifyContent: 'space-between', gap: 12 }}>
-        <span>{label}</span>
-        <strong style={{ color: tone, fontVariantNumeric: 'tabular-nums' }}>
-          {from} % à {to} %
-        </strong>
-      </div>
-      <div style={{ position: 'relative', height: 18, borderRadius: 9, background: 'var(--surface-2)' }}>
-        <div
-          style={{
-            position: 'absolute',
-            left: `${from}%`,
-            width: `${Math.max(to - from, 1.5)}%`,
-            top: 0,
-            bottom: 0,
-            borderRadius: 9,
-            background: tone,
-          }}
-        />
+    <div style={{ ...card, background: bg, border: 'none', textAlign: 'center', padding: 'clamp(12px, 1.6vw, 20px)' }}>
+      <div style={{ ...body, fontWeight: 600 }}>{label}</div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+        <span className="figure" style={{ fontSize: 'clamp(36px, 4.6vw, 60px)', lineHeight: 1.05, color: tone, fontVariantNumeric: 'tabular-nums' }}>{value}</span>
+        <span style={{ fontSize: 'clamp(14px, 1.3vw, 18px)', color: 'var(--fg-muted)' }}>d’invention</span>
       </div>
     </div>
   );
@@ -227,21 +213,23 @@ export default [
     )}
   >
     <Reveal>
-      <h2 className="headline" style={{ ...head, ...center }}>
+      <h2 className="headline" style={{ ...head, ...center, fontSize: 'clamp(26px, 3.2vw, 42px)', maxWidth: 'none' }}>
         Où le risque est élevé, et où il est presque nul
       </h2>
     </Reveal>
-    <div className="cols" style={{ gap: 18, maxWidth: 1100, marginInline: 'auto', marginTop: 'clamp(16px, 3vh, 30px)' }}>
+    <div className="cols" style={{ gap: 18, maxWidth: 1100, marginInline: 'auto', marginTop: 'clamp(12px, 2.5vh, 24px)' }}>
       {col('Risque élevé — l’IA comble ce qui manque', ['Les faits précis : chiffres, dates, noms, prix', 'Les références : normes, lois, articles, sources', 'Les calculs en série', "Tout ce qui n'était pas dans votre demande"], false)}
       {col('Risque faible — la matière vient de vous', ['Reformuler ou résumer un texte que VOUS fournissez', 'Structurer, classer, faire un plan', 'Générer des variantes, brainstormer', 'Traduire, changer le ton'], true)}
     </div>
-    <Build at={1} style={{ maxWidth: 1100, marginInline: 'auto', marginTop: 'clamp(16px, 3vh, 28px)', display: 'grid', gap: 14, textAlign: 'left' }}>
-      <Range from={22} to={94} label="Culture générale, sans texte fourni : ils inventent" tone="var(--gold)" />
-      <Range from={2} to={5} label="Avec le texte à résumer fourni" tone="var(--accent)" />
-      <p style={{ ...source, marginTop: 0 }}>Selon le modèle · Source : Stanford AI Index 2026, p. 136.</p>
+    <Build at={1} style={{ maxWidth: 1100, marginInline: 'auto', marginTop: 'clamp(12px, 2vh, 20px)' }}>
+      <div className="cols" style={{ gap: 18 }}>
+        <Figure label="Sans votre texte · culture générale" value="22 à 94 %" tone="var(--gold)" bg="var(--gold-soft)" />
+        <Figure label="Avec votre texte à résumer" value="2 à 5 %" tone="var(--accent)" bg="var(--accent-soft)" />
+      </div>
+      <p style={{ ...source, marginTop: 8, textAlign: 'center' }}>Selon le modèle · Source : Stanford AI Index 2026, p. 136.</p>
     </Build>
-    <Build at={2} style={{ marginTop: 'clamp(10px, 2vh, 20px)' }}>
-      <p style={{ ...body, fontWeight: 600, maxWidth: '56ch', ...center }}>
+    <Build at={2} style={{ marginTop: 'clamp(8px, 1.5vh, 16px)' }}>
+      <p style={{ ...body, fontWeight: 600, maxWidth: '64ch', ...center }}>
         Plus la réponse contient de faits que vous n'avez pas fournis, plus elle se vérifie avant de servir.
       </p>
     </Build>

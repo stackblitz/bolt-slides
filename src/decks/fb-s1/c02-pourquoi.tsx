@@ -91,14 +91,15 @@ export default [
   >
     <Kicker step={1} />
     <p className="lead" style={{ marginBottom: 'clamp(14px, 3vh, 28px)' }}>La question n'est plus…</p>
-    <div style={{ position: 'relative', display: 'inline-block', marginInline: 'auto' }}>
-      <h2 className="headline" style={{ maxWidth: '22ch', color: 'var(--fg-muted)', fontSize: 'clamp(28px, 4vw, 50px)' }}>
+    <h2 className="headline" style={{ marginInline: 'auto', maxWidth: 'none', color: 'var(--fg-muted)', fontSize: 'clamp(24px, 3.6vw, 50px)' }}>
+      {/* the strike sits on the text box itself: one line, so 55 % is the x-height centre at any size */}
+      <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}>
         « Est-ce que l'IA nous concerne ? »
-      </h2>
-      <Build at={1} y={0} style={{ position: 'absolute', left: '-2%', right: '-2%', top: '50%', height: 5, borderRadius: 3, background: 'var(--gold)' }}>
-        <span />
-      </Build>
-    </div>
+        <Build at={1} y={0} style={{ position: 'absolute', left: '-2%', right: '-2%', top: '55%', height: 'max(4px, 0.1em)', marginTop: 'min(-2px, -0.05em)', borderRadius: 3, background: 'var(--gold)' }}>
+          <span />
+        </Build>
+      </span>
+    </h2>
     <Build at={1} style={{ marginTop: 'clamp(24px, 5vh, 48px)' }}>
       <p className="lead" style={{ marginBottom: 10 }}>mais</p>
       <h2 className="display" style={{ fontSize: 'clamp(40px, 7vw, 100px)', maxWidth: '16ch', marginInline: 'auto' }}>
@@ -110,39 +111,37 @@ export default [
   /* s1-e06 */
   <Slide
     key="s1-e06"
+    center
     nav="Ce que vous m'avez dit"
     notes={n(
-      "Chiffres de positionnement à l'oral seulement, sans nom (D78) ; jamais la vue staff à l'écran.",
-      'Puis cinq tâches reformulées, sans nom ni entreprise. Moins de cinq réponses : les chiffres, rien de plus.',
-      "Enchaîner : c'est là-dessus qu'on travaille."
+      "Votre profil, rempli à l'inscription : des exemples adaptés à votre contexte pour toute la cohorte.",
+      'Les exercices aussi guident chaque séance et la cohorte : plus concret pour vous.',
+      "Chiffres de positionnement à l'oral seulement, sans nom (D78) ; jamais la vue staff à l'écran."
     )}
   >
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))', gap: 'clamp(24px, 4vw, 56px)', alignItems: 'center' }}>
-      <Reveal>
-        <div className="kicker" style={{ marginBottom: 10 }}>Avant qu'on se voie</div>
-        <h2 className="headline">Ce que vous m'avez dit</h2>
-        <p className="lead" style={{ marginTop: 16 }}>
-          Trois questions, avant la séance. Voici le groupe avant ; après, chacun avec son assistant.
-        </p>
-        <p className="lead" style={{ marginTop: 16, color: 'var(--fg)' }}>
-          C'est là-dessus qu'on travaille : <strong>vos tâches</strong>, pas des exemples de formation — aujourd'hui et aux séances suivantes.
-        </p>
-      </Reveal>
-      <Reveal delay={0.15}>
-        <div
-          style={{
-            border: '2px dashed var(--hair)',
-            borderRadius: 'var(--radius)',
-            minHeight: 'clamp(240px, 42vh, 420px)',
-            display: 'grid',
-            placeItems: 'center',
-            color: 'var(--fg-faint)',
-            background: 'var(--surface)',
-          }}
-        >
-          <span className="kicker">réponses du groupe · à remplir par cohorte</span>
-        </div>
-      </Reveal>
+    <div className="kicker" style={{ marginBottom: 10 }}>Avant qu'on se voie</div>
+    <h2 className="headline" style={{ marginInline: 'auto' }}>Ce que vous m'avez dit</h2>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(380px, 100%), 1fr))',
+        gap: 'clamp(16px, 2.4vw, 32px)',
+        width: '100%',
+        maxWidth: 1040,
+        margin: 'clamp(24px, 5vh, 48px) auto 0',
+      }}
+    >
+      {[
+        { t: 'Votre profil', d: "Rempli lors de l'inscription à la plateforme : il me permet de guider toute la cohorte avec de bons exemples, adaptés à votre contexte." },
+        { t: 'Vos exercices', d: 'Ils guident chacune des séances, et la cohorte : pour que ce soit vraiment plus concret pour vous.' },
+      ].map((p, i) => (
+        <Reveal key={p.t} delay={0.1 + 0.12 * i}>
+          <div style={{ ...card, height: '100%', borderTop: '4px solid var(--accent)' }}>
+            <h3 style={{ ...h3, fontSize: 'clamp(20px, 2.2vw, 28px)', marginBottom: 10 }}>{p.t}</h3>
+            <p style={{ ...body, fontSize: 'clamp(16px, 1.7vw, 22px)' }}>{p.d}</p>
+          </div>
+        </Reveal>
+      ))}
     </div>
   </Slide>,
 

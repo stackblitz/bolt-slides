@@ -188,24 +188,24 @@ type D = [number, number, number];
 type Ev = { d: D; model: string; when: string; full: string };
 // ponytail: month-only dates in the screen text sit on the 1st of the month; ranges on their first day.
 const OLD: Ev[] = [
-  { d: [2025, 2, 1], model: 'Claude Code', when: 'févr. 2025', full: "Des agents qui travaillent dans le terminal d'un développeur (Claude Code, février 2025)." },
-  { d: [2025, 4, 1], model: 'o3', when: 'avr. 2025', full: 'Une nouvelle génération de modèles qui raisonnent avant de répondre (o3, avril 2025).' },
-  { d: [2025, 5, 1], model: 'Claude 4', when: 'mai 2025', full: "Des modèles qui lisent des centaines de pages d'un coup (Claude 4, mai 2025)." },
-  { d: [2025, 8, 1], model: 'GPT-5', when: 'août 2025', full: "Un modèle grand public qui choisit lui-même son niveau d'effort (GPT-5, août 2025)." },
-  { d: [2025, 9, 1], model: 'Sora 2', when: 'sept. 2025', full: 'De la vidéo avec son et dialogue synchronisés (Sora 2, septembre 2025).' },
-  { d: [2025, 11, 1], model: 'Gemini 3, Opus 4.5', when: 'nov. 2025', full: 'Des modèles qui pilotent un navigateur à votre place (Gemini 3 et Opus 4.5, novembre 2025).' },
-  { d: [2025, 12, 1], model: 'Cowork', when: 'déc. 2025', full: "L'agent qui sort du terminal pour entrer dans l'application de bureau de tout le monde (Cowork, décembre 2025)." },
-  { d: [2026, 4, 1], model: 'Claude Mythos', when: 'avr. 2026', full: 'Un modèle annoncé sans être mis en vente, d’abord réservé à des partenaires en cybersécurité défensive (Claude Mythos · Project Glasswing, avril 2026).' },
+  { d: [2025, 2, 1], model: 'Claude Code', when: 'févr.', full: "Des agents qui travaillent dans le terminal d'un développeur (Claude Code, février 2025)." },
+  { d: [2025, 4, 1], model: 'o3', when: 'avr.', full: 'Une nouvelle génération de modèles qui raisonnent avant de répondre (o3, avril 2025).' },
+  { d: [2025, 5, 1], model: 'Claude 4', when: 'mai', full: "Des modèles qui lisent des centaines de pages d'un coup (Claude 4, mai 2025)." },
+  { d: [2025, 8, 1], model: 'GPT-5', when: 'août', full: "Un modèle grand public qui choisit lui-même son niveau d'effort (GPT-5, août 2025)." },
+  { d: [2025, 9, 1], model: 'Sora 2', when: 'sept.', full: 'De la vidéo avec son et dialogue synchronisés (Sora 2, septembre 2025).' },
+  { d: [2025, 11, 1], model: 'Gemini 3, Opus 4.5', when: 'nov.', full: 'Des modèles qui pilotent un navigateur à votre place (Gemini 3 et Opus 4.5, novembre 2025).' },
+  { d: [2025, 12, 1], model: 'Cowork', when: 'déc.', full: "L'agent qui sort du terminal pour entrer dans l'application de bureau de tout le monde (Cowork, décembre 2025)." },
+  { d: [2026, 4, 1], model: 'Claude Mythos', when: 'avr.', full: 'Un modèle annoncé sans être mis en vente, d’abord réservé à des partenaires en cybersécurité défensive (Claude Mythos · Project Glasswing, avril 2026).' },
 ];
 const NEW: Ev[] = [
-  { d: [2026, 6, 30], model: 'Sonnet 5', when: '30 juin', full: 'Le prix d’un bon modèle s’effondre : 2 $ le million de jetons — les « mots » du modèle — en entrée (Claude Sonnet 5, 30 juin 2026).' },
-  { d: [2026, 7, 8], model: 'Grok 4.5, GPT-5.6', when: '8–9 juil.', full: 'Deux grands modèles concurrents à un jour d’écart (Grok 4.5 le 8 juillet, GPT-5.6 le 9 juillet 2026).' },
+  { d: [2026, 6, 30], model: 'Sonnet 5', when: 'juin', full: 'Le prix d’un bon modèle s’effondre : 2 $ le million de jetons — les « mots » du modèle — en entrée (Claude Sonnet 5, 30 juin 2026).' },
+  { d: [2026, 7, 8], model: 'Grok 4.5, GPT-5.6', when: 'juil.', full: 'Deux grands modèles concurrents à un jour d’écart (Grok 4.5 le 8 juillet, GPT-5.6 le 9 juillet 2026).' },
   { d: [2026, 8, 1], model: 'Qwen3.8-Max', when: 'août', full: 'Le plus gros modèle chinois devient installable chez soi, en accès libre (Qwen3.8-Max, août 2026).' },
-  { d: [2026, 8, 5], model: 'FLUX 3 Video', when: '5 août', full: 'Vingt secondes de vidéo, son et dialogues synchronisés, ouverts à tous (FLUX 3 Video, 5 août 2026).' },
-  { d: [2026, 8, 6], model: 'GPT-5.6 Sol', when: '6 août', full: 'Un curseur pour choisir : réfléchir plus longtemps, ou répondre plus vite (GPT-5.6 Sol, 6 août 2026).' },
-  { d: [2026, 8, 27], model: 'Nvidia + Hugging Face', when: '27 août', full: 'Le fabricant de puces rachète la place publique des modèles ouverts, 12,9 milliards de dollars (Nvidia et Hugging Face, 27 août 2026).' },
-  { d: [2026, 9, 1], model: 'Quatre modèles', when: '1er–3 sept.', full: 'Quatre laboratoires sortent un modèle frontière en trois jours ; l’un dépasse l’humain sur 96 % des niveaux d’un test de raisonnement abstrait (Claude Fable 5.1, Gemini 3.8 Flash, Muse Spark 1.3, GPT-6 Astra, 1er–3 septembre 2026).' },
-  { d: [2026, 9, 3], model: 'K2 Horizon', when: '3 sept.', full: 'Six modèles entièrement ouverts, publiés avec leur code et leurs données d’entraînement (K2 Horizon, 3 septembre 2026).' },
+  { d: [2026, 8, 5], model: 'FLUX 3 Video', when: 'août', full: 'Vingt secondes de vidéo, son et dialogues synchronisés, ouverts à tous (FLUX 3 Video, 5 août 2026).' },
+  { d: [2026, 8, 6], model: 'GPT-5.6 Sol', when: 'août', full: 'Un curseur pour choisir : réfléchir plus longtemps, ou répondre plus vite (GPT-5.6 Sol, 6 août 2026).' },
+  { d: [2026, 8, 27], model: 'Nvidia + Hugging Face', when: 'août', full: 'Le fabricant de puces rachète la place publique des modèles ouverts, 12,9 milliards de dollars (Nvidia et Hugging Face, 27 août 2026).' },
+  { d: [2026, 9, 1], model: 'Quatre modèles', when: 'sept.', full: 'Quatre laboratoires sortent un modèle frontière en trois jours ; l’un dépasse l’humain sur 96 % des niveaux d’un test de raisonnement abstrait (Claude Fable 5.1, Gemini 3.8 Flash, Muse Spark 1.3, GPT-6 Astra, 1er–3 septembre 2026).' },
+  { d: [2026, 9, 3], model: 'K2 Horizon', when: 'sept.', full: 'Six modèles entièrement ouverts, publiés avec leur code et leurs données d’entraînement (K2 Horizon, 3 septembre 2026).' },
 ];
 const day = ([y, m, d]: D) => Date.UTC(y, m - 1, d) / 864e5;
 const TOP: [number, number] = [day([2025, 1, 1]), day([2026, 9, 30])];
@@ -220,12 +220,12 @@ const Dot = ({ at, color, r = 16, title }: { at: number; color: string; r?: numb
   <span title={title} style={abs(at, { top: '50%', width: r, height: r, transform: 'translate(-50%, -50%)', borderRadius: '50%', background: color, border: '2px solid var(--surface)' })} />
 );
 /** Axis line with month ticks above it. */
-function Axis({ range, ticks = [], children }: { range: [number, number]; ticks?: [D, string][]; children: ReactNode }) {
+function Axis({ range, ticks = [], below, children }: { range: [number, number]; ticks?: [D, string][]; below?: boolean; children: ReactNode }) {
   return (
     <div style={{ position: 'relative', height: 22 }}>
       <span style={{ position: 'absolute', left: 0, right: 0, top: 10, height: 2, background: 'var(--hair)' }} />
       {ticks.map(([d, txt]) => (
-        <span key={txt} style={abs(pct(d, range), { ...label, top: -18, paddingLeft: 6, borderLeft: '1.5px solid var(--accent)', lineHeight: '24px', fontSize: 'clamp(11px, 1vw, 13px)', color: 'var(--accent)' })}>{txt}</span>
+        <span key={txt} style={abs(pct(d, range), { ...label, top: below ? 10 : -18, paddingLeft: 6, borderLeft: '1.5px solid var(--accent)', lineHeight: '24px', fontSize: 'clamp(11px, 1vw, 13px)', color: 'var(--accent)' })}>{txt}</span>
       ))}
       {children}
     </div>
@@ -235,7 +235,7 @@ function Axis({ range, ticks = [], children }: { range: [number, number]; ticks?
 function Labels({ events, range, width, color, below }: { events: Ev[]; range: [number, number]; width: number; color: string; below?: boolean }) {
   const slot = (i: number) => (width * (i + 0.5)) / events.length;
   const leaders = (
-    <svg viewBox="0 0 100 10" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 'clamp(18px, 4vh, 32px)' }} aria-hidden>
+    <svg viewBox="0 0 100 10" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 'clamp(26px, 6vh, 48px)' }} aria-hidden>
       {events.map((e, i) => (
         <line key={e.full} x1={slot(i)} y1={below ? 10 : 0} x2={pct(e.d, range)} y2={below ? 0 : 10} stroke={color} strokeOpacity={0.5} strokeWidth={1.2} vectorEffect="non-scaling-stroke" />
       ))}
@@ -244,8 +244,8 @@ function Labels({ events, range, width, color, below }: { events: Ev[]; range: [
   const row = (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${events.length}, 1fr)`, width: `${width}%`, alignItems: below ? 'start' : 'end' }}>
       {events.map((e) => (
-        <div key={e.full} title={e.full} style={{ textAlign: 'center', padding: '0 4px', cursor: 'help', display: 'grid', gap: 2 }}>
-          <span style={{ fontWeight: 600, fontSize: 'clamp(13px, 1.25vw, 17px)', lineHeight: 1.15 }}>{e.model}</span>
+        <div key={e.full} title={e.full} style={{ textAlign: 'center', padding: '0 2px', cursor: 'help', display: 'grid', gap: 4 }}>
+          <span style={{ fontWeight: 600, fontSize: 'clamp(13px, 1.3vw, 17px)', lineHeight: 1.15, letterSpacing: '-0.01em' }}>{e.model}</span>
           <span style={{ ...label, color, fontSize: 'clamp(11px, 1vw, 13px)', letterSpacing: '0.02em', textTransform: 'none' }}>{e.when}</span>
         </div>
       ))}
@@ -256,13 +256,8 @@ function Labels({ events, range, width, color, below }: { events: Ev[]; range: [
 
 const Timelines = () => (
   <div style={{ maxWidth: 1120, width: '100%', marginInline: 'auto', marginTop: 'clamp(14px, 3vh, 30px)', position: 'relative' }}>
-    <div style={{ position: 'relative' }}>
-      <Labels events={OLD} range={TOP} width={P_JUNE - 2} color="var(--gold)" />
-      <Build at={1} style={{ position: 'absolute', left: `${P_JUNE}%`, right: 0, bottom: 'clamp(18px, 4vh, 32px)', textAlign: 'center' }}>
-        <span style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 'clamp(14px, 1.35vw, 18px)', whiteSpace: 'nowrap' }}>les quatre derniers mois</span>
-      </Build>
-    </div>
-    <Axis range={TOP}>
+    <Labels events={OLD} range={TOP} width={P_JUNE - 2} color="var(--gold)" />
+    <Axis range={TOP} ticks={[[[2025, 1, 1], '2025'], [[2026, 1, 1], '2026']]} below>
       {OLD.map((e) => <Dot key={e.full} at={pct(e.d, TOP)} color="var(--gold)" title={e.full} />)}
       <Build at={1} style={{ position: 'absolute', inset: 0 }}>
         <span style={abs(P_JUNE, { right: 0, top: 4, height: 14, borderRadius: 7, background: 'var(--accent-soft)', border: '1.5px solid var(--accent)' })} />
@@ -270,7 +265,7 @@ const Timelines = () => (
       </Build>
     </Axis>
     <Build at={1}>
-      <svg viewBox="0 0 100 10" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 'clamp(36px, 8vh, 64px)', marginTop: 4, marginBottom: 24 }} aria-hidden>
+      <svg viewBox="0 0 100 10" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 'clamp(48px, 10vh, 80px)', marginTop: 'clamp(24px, 5vh, 40px)', marginBottom: 'clamp(28px, 5vh, 40px)' }} aria-hidden>
         <polygon points={`${P_JUNE},0 100,0 100,10 0,10`} fill="var(--accent-soft)" />
         <line x1={P_JUNE} y1={0} x2={0} y2={10} stroke="var(--accent)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
         <line x1={100} y1={0} x2={100} y2={10} stroke="var(--accent)" strokeWidth={1.5} vectorEffect="non-scaling-stroke" />
@@ -278,8 +273,7 @@ const Timelines = () => (
       <Axis range={ZOOM} ticks={[[[2026, 6, 1], 'juin'], [[2026, 7, 1], 'juil.'], [[2026, 8, 1], 'août'], [[2026, 9, 1], 'sept.']]}>
         {NEW.map((e) => <Dot key={e.full} at={pct(e.d, ZOOM)} color="var(--accent)" title={e.full} />)}
       </Axis>
-      <div style={{ height: 'clamp(14px, 2.5vh, 22px)' }} />
-      <Labels events={NEW} range={ZOOM} width={100} color="var(--accent)" below />
+            <Labels events={NEW} range={ZOOM} width={100} color="var(--accent)" below />
     </Build>
   </div>
 );
@@ -371,10 +365,11 @@ export default [
     'Les frises se montrent, elles ne se lisent pas : nommer deux ou trois dates, laisser le reste se voir (survol = la ligne complète).',
     'Questions : « Laquelle avez-vous vue passer ? » puis « Et dans quatre mois ? »',
     '« Lequel est le meilleur ? » → celui que vous avez sous la main, bien dirigé.',
+    'Au clic : les quatre derniers mois, agrandis.',
+    FOOT13,
   )}>
     <h2 className="headline" style={{ ...h2, fontSize: 'clamp(24px, 2.9vw, 38px)', maxWidth: 'none' }}>{TITLE13}</h2>
     <Timelines />
-    <p style={{ ...muted, ...center, marginTop: 'clamp(12px, 2.5vh, 24px)' }}>{FOOT13}</p>
   </Slide>,
 
   /* s1-e15 */

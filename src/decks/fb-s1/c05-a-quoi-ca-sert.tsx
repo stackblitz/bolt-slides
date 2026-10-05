@@ -45,6 +45,18 @@ function Pictogram({ d, lit, i }: { d: string; lit: boolean; i: number }) {
   );
 }
 
+/* ── s1-e23 · one line icon per family: pen, bar chart, magnifier ─── */
+const FAMILY_ICONS = [
+  ['Génération', 'M4 20l4-1 11-11-3-3L5 16zM14 7l3 3'],
+  ['Analyse', 'M4 20h16M7 16v-4M12 16V7M17 16v-7'],
+  ['Recherche', 'M10.5 17a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM15.5 15.5L20 20'],
+] as const;
+const FamilyIcon = ({ d }: { d: string }) => (
+  <svg viewBox="0 0 24 24" width={40} height={40} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d={d} />
+  </svg>
+);
+
 /* ── s1-e22 · the three families, the screen's own wording ────────── */
 type Family = { title: string; short: string; prompt: string };
 const FAMILIES: Family[] = [
@@ -145,15 +157,13 @@ export default [
   /* s1-e20 */
   <Slide key="s1-e20" center nav="Pause" notes={n('Aucun minuteur à l’écran.', 'Annoncer l’heure du retour dans le clavardage.')}>
     <Reveal>
-      <div className="kicker" style={{ marginBottom: 'clamp(20px, 4vh, 40px)' }}>
+      <p className="display" style={{ fontSize: 'clamp(96px, 16vw, 220px)', lineHeight: 1, color: 'var(--accent)' }}>
         Pause
-      </div>
-      <p className="display" style={{ fontSize: 'clamp(32px, 5vw, 72px)', maxWidth: '20ch', marginInline: 'auto' }}>
+      </p>
+      <p className="lead" style={{ ...center, marginTop: 'clamp(20px, 4vh, 40px)', maxWidth: '40ch' }}>
         Caméras et micros peuvent rester fermés.
       </p>
-      <p className="lead" style={{ marginTop: 'clamp(18px, 3vh, 32px)', ...center }}>
-        L’heure du retour est annoncée dans le clavardage.
-      </p>
+      <p style={{ ...small, ...center, marginTop: 10 }}>L’heure du retour est annoncée dans le clavardage.</p>
     </Reveal>
   </Slide>,
 
@@ -279,7 +289,7 @@ export default [
         marginTop: 'clamp(24px, 4vh, 44px)',
       }}
     >
-      {['Génération', 'Analyse', 'Recherche'].map((l) => (
+      {FAMILY_ICONS.map(([l, d]) => (
         <div
           key={l}
           style={{
@@ -290,7 +300,10 @@ export default [
             textAlign: 'left',
           }}
         >
-          <span className="chip">{l}</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'var(--accent)' }}>
+            <FamilyIcon d={d} />
+            <span style={{ font: '600 clamp(17px, 1.7vw, 23px) var(--font-head)', color: 'var(--fg)' }}>{l}</span>
+          </span>
         </div>
       ))}
     </div>

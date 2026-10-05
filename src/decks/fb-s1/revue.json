@@ -3,14 +3,119 @@
     "slide": 2,
     "decision": "modifier",
     "note": "Ici, pas besoin d'animation sur le chiffre un, deux et trois à chaque clic.",
-    "fait": false,
+    "fait": true,
     "maj": "2026-10-05T22:18:19.318Z"
   },
   "s1-e04": {
     "slide": 4,
+    "decision": "ok",
+    "note": "\n",
+    "fait": true,
+    "maj": "2026-10-05T22:26:28.156Z"
+  },
+  "s1-e05": {
+    "slide": 5,
     "decision": "modifier",
-    "note": "J'ai l'impression que la phrase est-ce que l'ia nous concerne devrait être barrée par la ligne marron qui s'affiche, mais elle est légèrement décalée en dessous, donc l'effet ne rend pas très bien corrige ça.\n",
-    "fait": false,
-    "maj": "2026-10-05T22:21:38.366Z"
+    "note": "J'ai l'impression que la phrase est-ce que l'ia nous concerne devrait être barrée par la ligne marron qui s'affiche, mais elle est légèrement décalée en dessous, donc l'effet ne rend pas très bien corrige ça.",
+    "fait": true,
+    "maj": "2026-10-05T22:26:22.885Z"
+  },
+  "s1-e03": {
+    "slide": 3,
+    "decision": "modifier",
+    "note": "Alors c'est sympa comme ça, mais ça ressemble trop à la slide qu'utilise justement le l'escalier en trois D. Donc je veux que tu me proposes quelque chose de dans la même idée mais pas forcément le même design exactement que la slide qui est déjà utilisée.",
+    "fait": true,
+    "maj": "2026-10-05T22:27:11.139Z"
+  },
+  "s1-e06": {
+    "slide": 6,
+    "decision": "modifier",
+    "note": "Ici, je j'aime pas trop commencer présenter, je préférais tout simplement qu'on dise que vous avez rempli votre profil lors de l'inscription à la plateforme, ça, ça va me permettre de guider l'ensemble de la cohorte avec des bons exemples au contexte et même chose pour l'ensemble des exercices, ils vont pour but de guider chacune des séances et la cohorte pour être vraiment plus concret pour vous.",
+    "fait": true,
+    "maj": "2026-10-05T22:29:16.084Z"
+  },
+  "s1-e10": {
+    "slide": 10,
+    "decision": "modifier",
+    "note": "C'est bien, mais je préférais que tu enlèves « Que dit la norme CSA Z-417 ? »\n\nPuis ça permettra aux deux blocs de faire la même taille.",
+    "fait": true,
+    "maj": "2026-10-05T22:30:41.642Z"
+  },
+  "s1-e14": {
+    "slide": 14,
+    "decision": "modifier",
+    "note": "j'adore, c'est trop bien, par contre, j'aimerais que tu donnes un petit peu plus d'espace parce que c'est un petit peu trop resserré, ça pourrait respirer un peu plus, c'est un petit peu trop chargé.",
+    "fait": true,
+    "maj": "2026-10-05T22:31:13.221Z"
+  },
+  "s1-e20": {
+    "slide": 20,
+    "decision": "ok",
+    "note": "J'aimerais juste que tu me rajoutes le mot pose en plus grand tout simplement.\n",
+    "fait": true,
+    "maj": "2026-10-05T22:32:18.087Z"
+  },
+  "s1-e22": {
+    "slide": 22,
+    "decision": "ok",
+    "note": "",
+    "fait": true,
+    "maj": "2026-10-05T22:33:36.174Z"
+  },
+  "s1-e23": {
+    "slide": 23,
+    "decision": "ok",
+    "note": "J'aimerais que tu rajoutes des icônes pour décrire un petit peu chacune des trois familles.",
+    "fait": true,
+    "maj": "2026-10-05T22:33:40.007Z"
+  },
+  "s1-e28": {
+    "slide": 28,
+    "decision": "modifier",
+    "note": "J'aime les deux blocs qui expliquent les risques élevés et les risques faibles, mais par contre les deux schémas en dessous avec les pourcentages trouvent que c'est pas très clair. J'aimerais que tu me refasses cette section là qui est quelque chose de plus clair.",
+    "fait": true,
+    "maj": "2026-10-05T22:35:13.103Z"
+  },
+  "s1-e32": {
+    "slide": 32,
+    "decision": "modifier",
+    "note": "Ici, j'aimerais tout simplement que cet annonce que c'est un exercice qui va être fait chacun pour soi et que je vais présenter comment il doit être fait dans la plateforme.",
+    "fait": true,
+    "maj": "2026-10-05T22:36:56.381Z"
+  },
+  "s1-e34": {
+    "slide": 34,
+    "decision": "ok",
+    "note": "Tu peux enlever \"Ouvrez votre agenda ou vos courriels des deux dernières semaines : la mémoire ment, l'agenda non\"\n\nIci, je dirais plutôt voilà à quoi ressemblera à peu près les le résultat de l'exercice.\nIdéalement, il faudrait prendre un screenshot d'a quoi ressemble la plateforme lorsque le l'exercice est rempli, mais on n'est pas obligé.",
+    "fait": true,
+    "maj": "2026-10-05T22:39:17.922Z"
+  },
+  "s1-e35": {
+    "slide": 35,
+    "decision": "modifier",
+    "note": "Enlève le \"En plénière\".\nIci, pour le moment, on va la garder un peu plus simplement, on va enlever la première phrase et le en plénière, on va garder le reste parce que, dans le futur, ce sera connecté au résultat de l'analyse une fois que tous les apprenants ont donné leur résultat.",
+    "fait": true,
+    "maj": "2026-10-05T22:44:43.079Z"
+  },
+  "s1-e36": {
+    "slide": 36,
+    "decision": "modifier",
+    "note": "Ici, je veux que tu mentionnes que c'est un rappel qui explique que les informations qui donnent actuellement, c'est des informations qui vont être utiles pour les futures séances qui vont être rattachables au plus au pro future séance et que c'est ça l'intérêt un petit peu de de faire ces exercices en plus de leur apprendre comment la mécanique se fait pour utiliser les IA aujourd'hui.",
+    "fait": true,
+    "maj": "2026-10-05T22:45:36.194Z"
+  },
+  "s1-e37": {
+    "slide": 37,
+    "decision": "modifier",
+    "note": "Enlève la ligne sur le Cheat Sheet\nEnlève la troisième ligne sur le vocabulaire.\nPour la quatrième ligne, juste annonce leur que ils vont avoir accès au promptuaire et qu'il y aura donc des informations qui pourront aller récolter s'ils levent.\nPour la cinquième ligne avant de quitter donc dir leur qui a le feedback et l'évaluation qui doit être rempli dans la plateforme.\nJ'aimerais que tu rajoutes une ligne pour dire qu'il y aura des documents d'après séance pour aller plus loin qui vont être disponibles sur la plateforme et qui se trouveront en document ainsi que un P D F de la séance qu'on a vu aujourd'hui s'ils veulent retrouver des informations. Supprime \"La séance 2 s’ouvre sur un cas de votre plancher : une demande de soumission à décortiquer, et la consigne qui fait la différence.\"",
+    "fait": true,
+    "maj": "2026-10-05T22:48:52.752Z"
+  },
+  "s1-e09": {
+    "slide": 9,
+    "decision": "retirer",
+    "note": "",
+    "fait": true,
+    "maj": "2026-10-05T23:20:47.178Z"
   }
 }

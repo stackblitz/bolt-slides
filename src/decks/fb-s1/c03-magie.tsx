@@ -4,11 +4,11 @@ import Build from '../../deck/Build';
 import Reveal from '../../deck/Reveal';
 import { Kicker, n } from './ui';
 
-/* Capsule « Vivre la magie… et le raté » — s1-e09, s1-e10. s1-e10 echoes s1-e09's two frames. */
+/* Capsule « Vivre la magie… et le raté » — s1-e10 (s1-e09, the empty frames before the demo, removed in review). */
 
 function Frames({ left, right }: { left?: ReactNode; right?: ReactNode }) {
   const frame = (label: string, content: ReactNode, tone: string, delay: number) => (
-    <Reveal delay={delay} style={{ display: 'grid', gap: 12 }}>
+    <Reveal delay={delay} style={{ display: 'grid', gridTemplateRows: 'auto 1fr', gap: 12 }}>
       <span className="kicker" style={{ textAlign: 'center' }}>{label}</span>
       <div
         style={{
@@ -48,7 +48,7 @@ function Flow({ word, tone, soft, input, output, why }: { word: string; tone: st
   const box: CSSProperties = { borderRadius: 12, padding: 'clamp(10px, 1.2vw, 16px)', display: 'grid', gap: 8, alignContent: 'center', justifyItems: 'center', textAlign: 'center', height: '100%' };
   return (
     <div style={{ display: 'grid', gap: 'clamp(10px, 2vh, 18px)', width: '100%' }}>
-      <span className="display" style={{ fontSize: 'clamp(40px, 5.6vw, 76px)', color: tone, textAlign: 'center', lineHeight: 1 }}>{word}</span>
+      <span className="display" style={{ fontSize: 'clamp(36px, 4.6vw, 64px)', color: tone, textAlign: 'center', lineHeight: 1 }}>{word}</span>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'stretch', gap: 'clamp(6px, 1vw, 12px)' }}>
         <div style={{ ...box, border: '1px solid var(--hair)' }}>{input}</div>
         <div style={{ display: 'grid', alignContent: 'center', justifyItems: 'center', gap: 4, color: 'var(--fg-muted)' }}>
@@ -80,44 +80,26 @@ const RATE = (
     word="raté"
     tone="var(--gold)"
     soft="var(--gold-soft)"
-    input={<><Doc empty /><span style={{ ...small, color: 'var(--fg-muted)' }}>Aucun document<br />« Que dit la norme CSA Z-417 ? »</span></>}
+    input={<><Doc empty /><span style={{ ...small, color: 'var(--fg-muted)' }}>Aucun document</span></>}
     output={<span style={small}>Un contenu <strong>crédible</strong>, dit avec assurance… <strong style={{ color: 'var(--gold)' }}>et faux</strong></span>}
     why="Rien à lire : la connaissance est inventée."
   />
 );
 
 export default [
-  /* s1-e09 */
-  <Slide
-    key="s1-e09"
-    center
-    nav="La magie et le raté"
-    notes={n(
-      'Acte 1 — la magie : conversation neuve, document public du secteur, cinq pistes classées et datées + plan en trois étapes. « Combien de temps ça vous aurait pris ? »',
-      'Acte 2 — le raté : norme CSA Z-417, études fantômes, menu InDesign inexistant. Puis révéler.',
-      'Acte 3 : « Pourquoi la même machine fait les deux ? » Hypothèses du groupe ; réponse à la capsule suivante.'
-    )}
-  >
-    <Kicker step={2} />
-    <h2 className="headline" style={{ marginInline: 'auto', maxWidth: '24ch' }}>Le même modèle, la même conversation</h2>
-    <Frames />
-    <p className="lead" style={{ marginTop: 'clamp(18px, 3.5vh, 32px)', maxWidth: '52ch' }}>
-      D'un côté, cinq pistes et un plan ; de l'autre, un contenu crédible et faux. La seule différence, c'est ce qu'on lui demande.
-    </p>
-    <p className="chip" style={{ marginTop: 16, fontSize: 'clamp(12px, 1.2vw, 15px)' }}>Regardez l'écran partagé — rien à taper de votre côté</p>
-  </Slide>,
-
   /* s1-e10 */
   <Slide
     key="s1-e10"
     center
     nav="Résultat cible"
     notes={n(
+      'Avant ce slide, démo en direct dans LibreChat (s1-e09 retiré par Aurélien). Acte 1 — la magie : conversation neuve, document public du secteur, cinq pistes classées et datées + plan en trois étapes. Acte 2 — le raté : norme CSA Z-417, études fantômes. Acte 3 : « Pourquoi la même machine fait les deux ? »',
       "Les deux faces de la même machine, vues avant toute théorie : l'enthousiasme et la vigilance sur un pied d'égalité.",
       "« Pourquoi il ne dit pas qu'il ne sait pas ? » : garder pour la capsule générative vs traditionnelle."
     )}
   >
-    <h2 className="headline" style={{ marginInline: 'auto', maxWidth: '30ch', fontSize: 'clamp(24px, 3.2vw, 40px)' }}>
+    <Kicker step={2} />
+    <h2 className="headline" style={{ marginInline: 'auto', maxWidth: '34em', fontSize: 'clamp(22px, 2.8vw, 36px)' }}>
       Les deux faces de la même machine, avant toute théorie
     </h2>
     <Frames left={MAGIE} right={RATE} />

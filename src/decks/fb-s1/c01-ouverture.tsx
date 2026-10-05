@@ -1,10 +1,7 @@
 import type { CSSProperties } from 'react';
 import Slide from '../../deck/Slide';
-import Build from '../../deck/Build';
 import Reveal from '../../deck/Reveal';
 import { JOUR, Kicker, card, n } from './ui';
-import Escalier from './escalier';
-import type { Marche } from './escalier';
 import logoEts from './assets/logo-ets-formation.png';
 import logoMhosaic from './assets/logo.png';
 import logoFormabois from './assets/logo-formabois.png';
@@ -12,13 +9,20 @@ import logoFormabois from './assets/logo-formabois.png';
 /* Capsule « Ouverture » — s1-e01 to s1-e04. */
 
 /* s1-e03 « Le parcours » — the five séance titles of the mandat (brief, from the sommaires). */
-const PARCOURS: Marche[] = [
-  { n: 1, name: 'Séance 1', what: "Comprendre l'IA, ses possibilités et ses limites", where: 'Aujourd’hui' },
-  { n: 2, name: 'Séance 2', what: 'Utiliser efficacement les modèles de langage' },
-  { n: 3, name: 'Séance 3', what: 'Travailler avec des fichiers, des données et des assistants spécialisés' },
-  { n: 4, name: 'Séance 4', what: 'Utiliser plusieurs outils' },
-  { n: 5, name: 'Séance 5', what: 'Identifier la valeur, bâtir des cas d’affaires et préparer une feuille de route' },
+const PARCOURS: { n: number; what: string; where?: string }[] = [
+  { n: 1, what: "Comprendre l'IA, ses possibilités et ses limites", where: 'Aujourd’hui' },
+  { n: 2, what: 'Utiliser efficacement les modèles de langage' },
+  { n: 3, what: 'Travailler avec des fichiers, des données et des assistants spécialisés' },
+  { n: 4, what: 'Utiliser plusieurs outils' },
+  { n: 5, what: 'Identifier la valeur, bâtir des cas d’affaires et préparer une feuille de route' },
 ];
+
+/* s1-e03 — five chevrons, a road read left to right (not the staircase of « L'échelle »). */
+const NOTCH = 'clamp(14px, 1.6vw, 24px)';
+const chevron = (first: boolean) =>
+  first
+    ? `polygon(0 0, calc(100% - ${NOTCH}) 0, 100% 50%, calc(100% - ${NOTCH}) 100%, 0 100%)`
+    : `polygon(0 0, calc(100% - ${NOTCH}) 0, 100% 50%, calc(100% - ${NOTCH}) 100%, 0 100%, ${NOTCH} 50%)`;
 
 const logo: CSSProperties = { height: 'clamp(36px, 6vh, 64px)', width: 'auto', objectFit: 'contain' };
 
@@ -62,7 +66,7 @@ export default [
     center
     nav="On s'installe"
     notes={n(
-      'Trois gestes, cochés un à un : présence, LibreChat, prénom et métier au micro.',
+      'Trois gestes : présence, LibreChat, prénom et métier au micro.',
       "Avant la séance : accès LibreChat, une vraie tâche choisie, onboarding fait. Pas fait ? Clavardage, on règle ça avant le premier exercice."
     )}
   >
@@ -73,7 +77,6 @@ export default [
         <li key={t} style={{ ...card, display: 'flex', alignItems: 'center', gap: 18, fontSize: 'clamp(18px, 2.1vw, 26px)' }}>
           <span
             style={{
-              position: 'relative',
               flexShrink: 0,
               width: 44,
               height: 44,
@@ -87,11 +90,6 @@ export default [
             }}
           >
             {i + 1}
-            <Build at={i + 1} y={0} style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'var(--accent)', display: 'grid', placeItems: 'center' }}>
-              <svg viewBox="0 0 24 24" width={24} height={24} fill="none" stroke="var(--accent-ink)" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" aria-label="fait">
-                <path d="M5 12.5l4.5 4.5L19 6.5" />
-              </svg>
-            </Build>
           </span>
           <span>{t}</span>
         </li>
@@ -108,13 +106,52 @@ export default [
     center
     nav="Le parcours"
     notes={n(
-      'Ce que la cohorte va apprendre, en cinq marches ; moins de cinq minutes.',
+      'Ce que la cohorte va apprendre, en cinq étapes ; moins de cinq minutes.',
       'Demandé par les partenaires : que le parcours soit clair dès la séance 1.',
     )}
   >
     <span className="kicker">Le parcours</span>
-    <h2 className="headline" style={{ marginInline: 'auto' }}>Cinq séances, une marche à la fois</h2>
-    <Escalier marches={PARCOURS} lit={0} />
+    <h2 className="headline" style={{ marginInline: 'auto' }}>Cinq séances, une étape à la fois</h2>
+    <div
+      style={{
+        margin: 'clamp(28px, 6vh, 56px) auto 0',
+        width: '100%',
+        maxWidth: 1180,
+        display: 'grid',
+        gridTemplateColumns: `repeat(${PARCOURS.length}, minmax(0, 1fr))`,
+        gap: 'clamp(2px, 0.4vw, 6px)',
+      }}
+    >
+      {PARCOURS.map((s, i) => {
+        const lit = i === 0;
+        return (
+          <Reveal key={s.n} delay={0.08 * i} style={{ display: 'grid', gridTemplateRows: 'auto 1fr', gap: 10 }}>
+            <span className="kicker" style={{ textAlign: 'center', color: 'var(--accent)', visibility: s.where ? 'visible' : 'hidden' }}>
+              {s.where ?? '·'}
+            </span>
+            <div
+              style={{
+                clipPath: chevron(i === 0),
+                background: lit ? 'var(--accent)' : 'var(--surface-2)',
+                color: lit ? 'var(--accent-ink)' : 'var(--fg)',
+                padding: `clamp(16px, 2.4vh, 26px) calc(${NOTCH} + 10px) clamp(16px, 2.4vh, 26px) calc(${i === 0 ? '0px' : NOTCH} + 14px)`,
+                minHeight: 'clamp(180px, 32vh, 280px)',
+                display: 'grid',
+                alignContent: 'start',
+                gap: 8,
+                textAlign: 'left',
+              }}
+            >
+              <span className="kicker" style={{ color: 'inherit', opacity: 0.8 }}>Séance</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, fontSize: 'clamp(28px, 3.6vw, 48px)', lineHeight: 1, opacity: lit ? 1 : 0.55 }}>
+                {s.n}
+              </span>
+              <span style={{ fontSize: 'clamp(13px, 1.35vw, 18px)', fontWeight: 600, lineHeight: 1.25 }}>{s.what}</span>
+            </div>
+          </Reveal>
+        );
+      })}
+    </div>
   </Slide>,
   /* s1-e04 */
   <Slide key="s1-e04" center nav="Le chemin d'aujourd'hui" notes={n("Le parcours du jour, d'un coup d'œil ; la même ligne revient en surtitre de chaque capsule.")}>

@@ -14,12 +14,10 @@ const body: CSSProperties = { fontSize: 'clamp(17px, 1.7vw, 24px)', lineHeight: 
 const center: CSSProperties = { textAlign: 'center', marginInline: 'auto' };
 
 const GARDE = [
-  ['📄', <strong key="c">Cheat sheet de séance (gabarit une page)</strong>],
   ['🗂️', 'Je consolide votre inventaire des irritants, avec ses niveaux estimés, et je le dépose dans vos Documents.'],
-  ['📖', 'Les mots de la carte des espèces et les cinq niveaux de l’échelle entrent au glossaire (« Vocabulaire »).'],
-  ['💡', 'Vos formulations qui ont marché et les pièges qu’on a vécus deviennent des fiches dans le Promptuaire de la cohorte.'],
-  ['✍️', 'Avant de quitter : trois questions sur la plateforme, votre retour sur la séance.'],
-  ['➡️', 'La séance 2 s’ouvre sur un cas de votre plancher : une demande de soumission à décortiquer, et la consigne qui fait la différence.'],
+  ['💡', 'Vous aurez accès au Promptuaire : des fiches où aller puiser, si vous le voulez.'],
+  ['📚', 'Dans Documents : des documents d’après séance pour aller plus loin, et le PDF de la séance d’aujourd’hui pour retrouver une information.'],
+  ['✍️', 'Avant de quitter : remplissez le feedback et l’évaluation sur la plateforme.'],
 ] as const;
 
 /* Echo of s1-e09 / s1-e10: the two frames, filled with their word. */
@@ -53,7 +51,7 @@ export default [
     nav="Ce qu'on garde"
     notes={n(
       'Écran sans clic : il reste affiché pendant le retour sur la plateforme.',
-      'Rappeler les trois questions de retour avant de quitter.'
+      'Rappeler le feedback et l’évaluation à remplir sur la plateforme avant de quitter.'
     )}
   >
     <Reveal>
