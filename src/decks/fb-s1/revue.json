@@ -1,0 +1,16 @@
+{
+  "s1-e02": {
+    "slide": 2,
+    "decision": "modifier",
+    "note": "Ici, pas besoin d'animation sur le chiffre un, deux et trois à chaque clic.",
+    "fait": false,
+    "maj": "2026-10-05T22:18:19.318Z"
+  },
+  "s1-e04": {
+    "slide": 4,
+    "decision": "modifier",
+    "note": "J'ai l'impression que la phrase est-ce que l'ia nous concerne devrait être barrée par la ligne marron qui s'affiche, mais elle est légèrement décalée en dessous, donc l'effet ne rend pas très bien corrige ça.\n",
+    "fait": false,
+    "maj": "2026-10-05T22:21:38.366Z"
+  }
+}

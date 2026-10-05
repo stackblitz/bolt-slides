@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* Formabois S1 — light theme from content/mandats/formabois/profil.md.
+   Loaded only with this deck (lazy), so it overrides the starter tokens. */
+html { color-scheme: light; }
+:root {
+  --bg: #F8F7F5;
+  --bg-grad-1: rgba(67, 56, 202, 0.05);
+  --bg-grad-2: rgba(138, 99, 32, 0.04);
+  --surface: #FFFFFF;
+  --surface-2: #F1F0EC;
+  --fg: #1D1D22;
+  --fg-muted: #6B6B74;
+  --fg-faint: #9A9AA2;
+  --hair: #E3E1DB;
+  --hair-2: #EEECE7;
+  --primary: #4338CA;
+  --accent: #4338CA;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #EEF0FB;
+  --gold: #8A6320;
+  --gold-soft: #F4EBD8;
+  --shadow: 0 30px 70px -40px rgba(29, 29, 34, 0.25);
+  --glow: 0 20px 50px -30px rgba(67, 56, 202, 0.3);
+  --grain: 0;
+  --vignette: transparent;
+  --font-head: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
