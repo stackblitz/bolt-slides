@@ -21,14 +21,16 @@ import {
   IconShrink,
   IconPresent,
   IconClose,
+  IconReview,
 } from './icons';
+import Review from '../components/Review';
 
 /* ── The paged presentation engine + the Slidev-style chrome (dock + rail).
    Wrap your <Slide>/<Bento>/… in <Deck>. Each top-level child is one slide.
      → / ↓ / Space   next (reveals the next <Build>, then the next slide)
      ← / ↑           previous            S sidebar     G grid view
      Home / End      first / last        A annotate    P presenter (new tab)
-     F fullscreen    H hide/show the UI
+     F fullscreen    H hide/show the UI   R review (dev only)
    Copy verbatim; theme only via the :root tokens. ───────────────────────── */
 
 const fmt = (s: number) =>
@@ -99,6 +101,7 @@ export default function Deck({ children }: { children: ReactNode }) {
   const [railOpen, setRailOpen] = useState(false);
   const [gridOpen, setGridOpen] = useState(false);
   const [drawing, setDrawing] = useState(false);
+  const [reviewing, setReviewing] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [fs, setFs] = useState(false);
   const [uiHidden, setUiHidden] = useState(false);
@@ -247,6 +250,10 @@ export default function Deck({ children }: { children: ReactNode }) {
         case 'P':
           openPresenter();
           break;
+        case 'r':
+        case 'R':
+          if (import.meta.env.DEV) setReviewing((v) => !v);
+          break;
         case 'h':
         case 'H':
           setUiHidden((v) => !v);
@@ -255,6 +262,7 @@ export default function Deck({ children }: { children: ReactNode }) {
           setRailOpen(false);
           setGridOpen(false);
           setDrawing(false);
+          setReviewing(false);
           setUiHidden(false);
           break;
       }
@@ -488,6 +496,13 @@ export default function Deck({ children }: { children: ReactNode }) {
           </div>
         )}
 
+        {reviewing && !isPresenter && (
+          <Review
+            id={String(slides[slide]?.key ?? slide).replace(/^\.\$/, '')}
+            slide={slide}
+            onClose={() => setReviewing(false)}
+          />
+        )}
         <div className={'noir-dock' + (hideUI ? ' hidden' : '')}>
           {/* phones: nav floats bare above the tools pill (see base.css) */}
           <div className="noir-bar noir-nav-bar">{navCluster}</div>
@@ -522,6 +537,17 @@ export default function Deck({ children }: { children: ReactNode }) {
             >
               <IconPencil />
             </button>
+            {import.meta.env.DEV && (
+              <button
+                className={'noir-icon-btn' + (reviewing ? ' on' : '')}
+                data-tip="Review (R)"
+                aria-label="Review this slide"
+                aria-pressed={reviewing}
+                onClick={() => setReviewing((v) => !v)}
+              >
+                <IconReview />
+              </button>
+            )}
             <button
               className="noir-icon-btn"
               data-tip={fs ? 'Exit fullscreen (F)' : 'Fullscreen (F)'}
