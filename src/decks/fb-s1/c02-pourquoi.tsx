@@ -103,7 +103,7 @@ function CaptureLibreChat() {
         capture LibreChat (compte anonymisé)
       </div>
     );
-  return <img src="/fb-s1/librechat.png" alt="LibreChat, l'outil d'IA de la formation" onError={() => setManque(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left', display: 'block' }} />;
+  return <img src="/fb-s1/librechat.png" alt="LibreChat, l'outil d'IA de la formation" onError={() => setManque(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transform: 'scale(1.3)', transformOrigin: '50% 42%' }} />;
 }
 
 export default [

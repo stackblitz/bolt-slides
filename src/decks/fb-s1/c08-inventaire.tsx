@@ -159,7 +159,7 @@ export default [
   <Slide
     key="s1-e35"
     center
-    nav="Par famille"
+    nav="Les irritants en commun"
     notes={n(
       'Regrouper les lignes par famille à l’écran : les mêmes irritants reviennent d’une entreprise à l’autre.',
       'Finir par la colonne risque : repérer ce que hallucinations et confidentialité couvrent déjà.'
