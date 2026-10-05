@@ -3,7 +3,9 @@ import Slide from '../../deck/Slide';
 import Build from '../../deck/Build';
 import Reveal from '../../deck/Reveal';
 import CountUp from '../../components/CountUp';
+import { useState } from 'react';
 import { Kicker, card, source, n } from './ui';
+import shotPlateforme from './assets/plateforme-apprenant.png';
 
 /* Capsule « Pourquoi vous êtes ici » — s1-e05 to s1-e08. */
 
@@ -78,6 +80,32 @@ const Stamp = ({ at, text, rot }: { at: number; text: string; rot: number }) => 
   </Build>
 );
 
+/* « Vos deux outils » — added in review (between « Ce que vous m'avez dit » and « Vos quatre
+   questions »). Platform shot: local fictional seed, learner view. LibreChat shot: drop an
+   anonymised capture at public/fb-s1/librechat.png; until then a labelled frame shows. */
+function Outil({ titre, texte, children }: { titre: string; texte: string; children: React.ReactNode }) {
+  return (
+    <div style={{ display: 'grid', gap: 12, alignContent: 'start' }}>
+      <div style={{ borderRadius: 'var(--radius-sm)', overflow: 'hidden', border: '1px solid var(--hair)', boxShadow: 'var(--shadow)', aspectRatio: '16 / 10', background: 'var(--surface-2)' }}>
+        {children}
+      </div>
+      <h3 style={{ ...h3, fontSize: 'clamp(19px, 2vw, 26px)', textAlign: 'left' }}>{titre}</h3>
+      <p style={{ ...body, textAlign: 'left' }}>{texte}</p>
+    </div>
+  );
+}
+
+function CaptureLibreChat() {
+  const [manque, setManque] = useState(false);
+  if (manque)
+    return (
+      <div style={{ height: '100%', display: 'grid', placeItems: 'center', border: '2px dashed var(--hair)', color: 'var(--fg-faint)', fontSize: 'clamp(13px, 1.2vw, 16px)' }}>
+        capture LibreChat (compte anonymisé)
+      </div>
+    );
+  return <img src="/fb-s1/librechat.png" alt="LibreChat, l'outil d'IA de la formation" onError={() => setManque(true)} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left', display: 'block' }} />;
+}
+
 export default [
   /* s1-e05 */
   <Slide
@@ -142,6 +170,41 @@ export default [
           </div>
         </Reveal>
       ))}
+    </div>
+  </Slide>,
+
+  /* s1-outils — added in review, not yet in the brief */
+  <Slide
+    key="s1-outils"
+    center
+    nav="Vos deux outils"
+    notes={n(
+      'Présentation rapide des deux outils, ouverts tout le parcours.',
+      'La plateforme : séances, Documents, exercices, Promptuaire, retour après chaque séance.',
+      'LibreChat : l’outil d’IA de la formation, hébergé par Mhosaic au Canada ; c’est là qu’on pratique.'
+    )}
+  >
+    <h2 className="headline" style={{ marginInline: 'auto' }}>Vos deux outils</h2>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(420px, 100%), 1fr))',
+        gap: 'clamp(20px, 3vw, 44px)',
+        width: '100%',
+        maxWidth: 1180,
+        margin: 'clamp(18px, 3.5vh, 36px) auto 0',
+      }}
+    >
+      <Reveal delay={0.1}>
+        <Outil titre="La plateforme de formation" texte="Vos séances, vos Documents, les exercices à remplir, le Promptuaire, votre retour après chaque séance.">
+          <img src={shotPlateforme} alt="La plateforme, vue apprenant : Ma cohorte et les cinq séances" style={{ width: '150%', maxWidth: 'none', height: 'auto', display: 'block' }} />
+        </Outil>
+      </Reveal>
+      <Reveal delay={0.22}>
+        <Outil titre="LibreChat" texte="L’outil d’IA de la formation, hébergé par Mhosaic, au Canada. C’est là qu’on pratique.">
+          <CaptureLibreChat />
+        </Outil>
+      </Reveal>
     </div>
   </Slide>,
 
