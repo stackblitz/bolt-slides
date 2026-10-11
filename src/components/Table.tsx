@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from '../deck/useInView';
 
@@ -29,6 +29,7 @@ export default function Table({
   highlightRow?: number;
   caption?: string;
 }) {
+  const capId = useId();
   const { ref, inView } = useInView<HTMLDivElement>(0.25);
   const reduce = useReducedMotion();
   const align = (c: TableColumn) =>
@@ -40,7 +41,7 @@ export default function Table({
   return (
     <div ref={ref}>
       <div className="dtable mat">
-        <table>
+        <table aria-describedby={caption ? capId : undefined}>
           <thead>
             <tr>
               {columns.map((c, i) => (
@@ -85,6 +86,7 @@ export default function Table({
       </div>
       {caption && (
         <div
+          id={capId}
           className="foot dtable-caption"
           style={{ maxWidth: 880, marginInline: 'auto' }}
         >

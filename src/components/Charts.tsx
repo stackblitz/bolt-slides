@@ -23,8 +23,15 @@ export function BarChart({
   const { ref, inView } = useInView<HTMLDivElement>(0.3);
   const animate = !isStatic && !reduce;
   const max = Math.max(...data.map((d) => d.value)) || 1;
+  const chartSummary = `Bar chart showing ${data.map((d) => `${d.label}: ${d.value}`).join(', ')}`;
   return (
-    <div className="ch ch-bars" ref={ref} style={{ height }}>
+    <div
+      className="ch ch-bars"
+      ref={ref}
+      style={{ height }}
+      role="img"
+      aria-label={chartSummary}
+    >
       {data.map((d, i) => (
         <div key={i} className="ch-col">
           {showValues && (
@@ -89,8 +96,9 @@ export function LineChart({
     .join(' ');
   const area = `${line} L${w},${h} L0,${h} Z`;
   const [ex, ey] = coords[coords.length - 1];
+  const chartSummary = `Line chart with ${points.length} data points ranging from ${min} to ${max}`;
   return (
-    <div className="ch-wrap" ref={ref}>
+    <div className="ch-wrap" ref={ref} role="img" aria-label={chartSummary}>
       <svg
         className="ch-line"
         viewBox={`0 0 ${w} ${h}`}
@@ -191,10 +199,13 @@ export function DonutChart({
     return () => cancelAnimationFrame(raf);
   }, [isStatic, inView, value, reduce]);
 
+  const chartSummary = label ? `${label}: ${value}%` : `${value}% donut chart`;
   return (
     <div
       className="ch-donut"
       style={{ '--ch-size': `${size}px` } as CSSProperties}
+      role="img"
+      aria-label={chartSummary}
     >
       <svg ref={ref} viewBox="0 0 140 140">
         <circle

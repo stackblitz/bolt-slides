@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 /* An expand/collapse accordion. Data-driven like Bento/StatGrid. Mono index,
@@ -18,6 +18,7 @@ export default function Accordion({
   single?: boolean;
   defaultOpen?: number | null;
 }) {
+  const baseId = useId();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState<number[]>(
     defaultOpen == null ? [] : [defaultOpen]
@@ -35,9 +36,11 @@ export default function Accordion({
       {items.map((it, i) => (
         <div key={i} className={'acc-item mat' + (isOpen(i) ? ' open' : '')}>
           <button
+            id={`acc-head-${baseId}-${i}`}
             className="acc-head"
             onClick={() => toggle(i)}
             aria-expanded={isOpen(i)}
+            aria-controls={`acc-body-${baseId}-${i}`}
           >
             <span className="acc-index">{String(i + 1).padStart(2, '0')}</span>
             <h3>{it.title}</h3>
@@ -46,6 +49,9 @@ export default function Accordion({
           <AnimatePresence initial={false}>
             {isOpen(i) && (
               <motion.div
+                id={`acc-body-${baseId}-${i}`}
+                role="region"
+                aria-labelledby={`acc-head-${baseId}-${i}`}
                 className="acc-body"
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}

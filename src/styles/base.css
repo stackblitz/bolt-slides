@@ -2053,10 +2053,13 @@ strong {
   color: #e8e8ea;
   font-size: 19px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.1s var(--ease);
 }
 .noir-icon-btn:hover {
   background: rgba(255, 255, 255, 0.12);
+}
+.noir-icon-btn:active:not(:disabled) {
+  transform: scale(0.94);
 }
 .noir-icon-btn:disabled {
   opacity: 0.28;
@@ -2068,6 +2071,18 @@ strong {
 .noir-icon-btn.on {
   color: var(--accent-ink, #04140e);
   background: var(--accent, linear-gradient(115deg, #c8f56e, #34dcd8));
+}
+
+/* ── UI/UX Pro Max: Keyboard focus-visible system & tactile micro-interactions ── */
+:is(.noir-icon-btn, .tab, .acc-head, .noir-thumb, .ann-btn, .ann-color, .ann-size):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  z-index: 2;
+}
+
+.tab:active,
+.ann-btn:active:not(:disabled) {
+  transform: scale(0.96);
 }
 .noir-icon-btn.sm {
   width: 30px;
@@ -2744,10 +2759,26 @@ strong {
     width: 34px;
     height: 34px;
     font-size: 17px;
+    position: relative;
+  }
+  .noir-icon-btn::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    min-width: var(--touch-target-min, 44px);
+    min-height: var(--touch-target-min, 44px);
   }
   .noir-icon-btn.sm {
     width: 28px;
     height: 28px;
+    position: relative;
+  }
+  .noir-icon-btn.sm::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    min-width: var(--touch-target-min, 44px);
+    min-height: var(--touch-target-min, 44px);
   }
   .noir-counter {
     padding: 0 8px;

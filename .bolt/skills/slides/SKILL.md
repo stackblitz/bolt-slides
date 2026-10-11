@@ -254,6 +254,33 @@ slide**, never a circus. All honors `prefers-reduced-motion`.
 
 ---
 
+## Step 6.5 — UI/UX Pro Max design intelligence
+
+Great slide decks are living web applications, so professional UI/UX standards apply:
+
+1. **Accessibility & contrast (WCAG 4.5:1 minimum)**:
+   - Ensure text contrast never washes out against dark glass backgrounds (`--surface` or `--surface-2`). Normal text must achieve at least 4.5:1 contrast against its backdrop; large headlines (≥24px) must achieve at least 3:1.
+   - For light mode decks (`html { color-scheme: light; }`), never use faint gray body text. Ensure primary text is deep ink (e.g., `#0f172a` slate-900) and muted text is at least `#475569` (slate-600).
+   - Use `--focus-ring` for keyboard navigability. Never remove focus outlines without replacement.
+
+2. **Touch targets & responsive interaction**:
+   - Minimum 44×44px hit-target size for all touch elements on phones and tablets.
+   - Interactive cards and clickable elements must include `cursor: pointer`.
+   - Micro-interactions: provide physical tactile feedback on press (`:active { transform: scale(0.96); }`) with 150–300ms durations. Never use scale transforms that cause layout shifts on hover.
+
+3. **SVG iconography over emojis**:
+   - **No emoji UI icons:** Never use raw emojis (🚀, 💡, ⚙️) as icons inside buttons, cards, or feature matrices. Use clean inline SVGs with fixed viewboxes (`viewBox="0 0 24 24"`). Reserve emojis solely for the page favicon.
+
+4. **Typography hierarchy & rhythm**:
+   - Pair heading and body typography purposefully (e.g., display geometric sans + clean neutral text, or editorial serif + modern grotesque).
+   - Maintain readable body line height (1.5–1.75) and cap paragraph widths at 65–75 characters per line to preserve reading comfort.
+   - Use tabular numerals (`font-feature-settings: 'tnum' 1;`) for metrics, financial figures, dates, and charts.
+
+5. **Data visualization accessibility**:
+   - SVGs presenting information (`BarChart`, `LineChart`, `DonutChart`) must include `role="img"` and descriptive `aria-label`s summarizing the insight so non-visual presenters understand the data.
+
+---
+
 ## Extend the system — invent new slides, components & visuals
 
 The kit is a **floor, not a ceiling.** The bundled components cover a lot (comparison,
@@ -315,4 +342,5 @@ trigger or that it exists — just deliver the demo.
 - [ ] **Responsive:** looks right narrow + wide — sections stack, nothing clips or
       needs scrolling. Builds reveal in the intended order.
 - [ ] Motion is restrained; reduced-motion respected.
+- [ ] **UI/UX Pro Max audit:** No emojis used as UI icons (SVGs only); all text achieves WCAG contrast minimums (≥4.5:1); interactive elements provide visible `:focus-visible` rings and responsive touch targets (≥44px); SVG data visualizations include `role="img"` and descriptive `aria-label`.
 - [ ] `npm install && npm run dev` runs with no console errors; `npm run build` passes.

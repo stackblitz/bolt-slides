@@ -57,6 +57,10 @@
   --grain: 0.035;
   --vignette: rgba(0, 0, 0, 0.22);
 
+  /* Focus & Accessibility (UI/UX Pro Max) */
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--primary);
+  --touch-target-min: 44px;
+
   /* Responsive gutter — fluid side / vertical padding */
   --gutter: clamp(28px, 6vw, 120px);
   --gutter-y: clamp(40px, 8vh, 96px);
